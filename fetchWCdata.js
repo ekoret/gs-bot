@@ -1,3 +1,4 @@
+//https://github.com/woocommerce/woocommerce-rest-api-js-lib
 const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 require('dotenv').config();
  
@@ -6,31 +7,58 @@ const api = new WooCommerceRestApi({
   url: process.env.SITE_URL,
   consumerKey: process.env.GS_KEY,
   consumerSecret: process.env.GS_SECRET,
-  version: "wc/v3"
+  version: process.env.WC_VERSION
 });
 
-
-const wcData = async () => {
-
-    const response = await api.get('products/1520223')
+async function wcData(args) {
+    
+    const response = await api.get(`products/${args}`)
     .then( response => {
         //Get the data object for the product
         const { data } = response;
-        const { id, name, permalink, regular_price, sale_price, stock_status} = data;
-
+        // const { id, name, permalink, regular_price, sale_price, stock_status} = data;
+        console.log(data);
         // console.log( `id: ${id}, name: ${name}, permalink: ${permalink}, regular_price: ${regular_price}, sale_price: ${sale_price}, stock_status: ${stock_status}`);
         
-        return permalink;
+        // return permalink;
     })
-    .catch( error => {
-        console.log('Unable to fetch in wcData', error);
-        const errorMessage = `Unable to fetch any data..`;
+    .catch( () => {
+        // console.log('Unable to fetch in wcData', error);
+        const errorMessage = ` I was unable to fetch any data..`;
         return errorMessage;
     })
 
     return response;
+}
+   
+// module.exports = {
+//     wcData: wcData()
+// }
 
+module.exports = {
+    wcData
 }
 
+// const wcData = async () => {
+//     const response = await api.get('products/1520223')
+//     .then( response => {
+//         //Get the data object for the product
+//         const { data } = response;
+//         const { id, name, permalink, regular_price, sale_price, stock_status} = data;
 
-exports.wcData = wcData();
+//         // console.log( `id: ${id}, name: ${name}, permalink: ${permalink}, regular_price: ${regular_price}, sale_price: ${sale_price}, stock_status: ${stock_status}`);
+        
+//         return permalink;
+//     })
+//     .catch( error => {
+//         console.log('Unable to fetch in wcData', error);
+//         const errorMessage = `Unable to fetch any data..`;
+//         return errorMessage;
+//     })
+
+//     return response;
+
+// }
+
+
+// exports.wcData = wcData();

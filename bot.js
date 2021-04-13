@@ -49,7 +49,7 @@ client.on('message', (message) => {
 
 
     if (command === 'commands') {
-        message.reply(`Here are a list of my commands: ?ping ?dadjoke`);
+        message.reply(`Here are a list of my commands: ${pf}ping ${pf}dadjoke`);
     }
 
     if (command === 'dadjoke') {
@@ -64,12 +64,26 @@ client.on('message', (message) => {
         message.reply(`It took ${timeTaken}ms for the reply`);
     }
 
-    if (command === 'wc') {
-        // const productInfo = wcData;
-        wcData.then( product => {
-            message.reply(product);
-        })
+    //Product search command
+    if (command === 'search') {
+        //If there is more than 1 argument, display args message
+        if(args.length > 1 || args.length === 0){
+            message.reply(`Incorret usage. Example" ${pf}search productName`);
+        } else {
+            //Pass the first argument into wcData function
+            wcData(args[0]).then( product => {
+                //Reply back to author with the promise value
+                message.reply(product);
+            })
+        }
     }
+
+    // if (command === 'wc') {
+    //     // const productInfo = wcData;
+    //     wcData.then( product => {
+    //         message.reply(product);
+    //     })
+    // }
 });
 
 //Logs the client in, establishing a websocket connection to Discord
