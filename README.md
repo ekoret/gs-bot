@@ -10,3 +10,5 @@ Create a custom endpoint to search for product
     - we need: product name, category, regular price, sale price, permalink, image
 
 Implement the check order status command
+    - bot returns order status successfully
+    - now need to do a check if unique user id in user meta data entered in args[1] matches user id on order details
