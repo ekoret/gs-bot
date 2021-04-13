@@ -10,7 +10,7 @@ const api = new WooCommerceRestApi({
 });
 
 
-async function getOrderStatus(userID, orderNumber) {
+async function getOrderStatus(orderNumber, userID) {
     
     //Get the order details from the API from order number
     const orderStatus = await api.get(`orders/${orderNumber}`)
@@ -26,7 +26,14 @@ async function getOrderStatus(userID, orderNumber) {
         const errorMessage = `I was unable to find your order data.. Please try again or contact ${process.env.ADMIN_USER}.`;
         return errorMessage;
     })
+
+    //Get the customers details for the unique id in meta data
+    // const customerDetails = await api.get(`customers/${userID}`)
+    // .then( (response) => {
+    //     console.log(response);
+    // })
   
+    console.log(userID);
  
     return orderStatus;
 }

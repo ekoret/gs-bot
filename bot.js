@@ -168,7 +168,7 @@ client.on('message', (message) => {
                         embed: waitingEmbed
                     });
 
-                    getOrderStatus(userID, orderNumber)
+                    getOrderStatus(orderNumber, userID)
                     .then( orderStatus => {
                         message.author.send(orderStatus);
                     });
@@ -185,15 +185,7 @@ client.on('message', (message) => {
 
 
     }
-    
-    
 
-    // if (command === 'wc') {
-    //     // const productInfo = wcData;
-    //     wcData.then( product => {
-    //         message.reply(product);
-    //     })
-    // }
 });
 
 //Logs the client in, establishing a websocket connection to Discord
