@@ -8,9 +8,6 @@ async function search_product(args){
 
     const results = axios.get(`${process.env.DEV_ENDPOINT}${searchTerms}`)
     .then( (response) => {
-        // console.log(response.data[0].category_link);
-        console.log(response.data);
-
         return response.data;
     })
     .catch( (err) => {

@@ -68,28 +68,30 @@ client.on('message', (message) => {
         message.reply(`It took ${timeTaken}ms for the reply`);
     }
 
-    //Product search command
-    if (command === 'search') {
-        //If there is more than 1 argument, display args message
-        if(args.length > 1 || args.length === 0){
-            message.reply(`Incorret usage. Example" ${pf}search productName`);
-        } else {
-            //Pass the first argument into wcData function
-            wcData(args[0]).then( product => {
-                //Reply back to author with the promise value
-                message.reply(product);
-            })
-        }
-    }
+    //Product search command      POSSIBLY REPLACED
+    // if (command === 'search') {
+    //     //If there is more than 1 argument, display args message
+    //     if(args.length > 1 || args.length === 0){
+    //         message.reply(`Incorret usage. Example" ${pf}search productName`);
+    //     } else {
+    //         //Pass the first argument into wcData function
+    //         wcData(args[0]).then( product => {
+    //             //Reply back to author with the promise value
+    //             message.reply(product);
+    //         })
+    //     }
+    // }
 
-    if (command === 'test'){
+    if (command === 'search'){
       if(!args.length){
         message.reply(`This command requires at least 1 argument`);
       } else {
         search_product(args)
         .then( (products) => {
+
           message.reply(`any of these match your request?`);
           products.forEach( (product) => {
+
             const productEmbed = {
               title: `${product.name}`,
               url: `${product.link}`,
@@ -99,23 +101,24 @@ client.on('message', (message) => {
               },
               fields: {
                 name: 'Category',
-                // value: ''
-              }
+                value: `${ product.category.map( (term) => {
+                    return term.name.toUpperCase();
+                })}   \n${product.category_link}`
+              },
+              image: {
+                url: `${product.category_link}`,
+              },
+              timestamp: new Date(),
             };
             message.reply({
               embed: productEmbed
-            });
-          })
-          // console.log(products);
-        } );
+            }); //end embed
+
+
+          })//end products foreach
+        } ); //end then
       }
     }
-
-
-
-
-
-
 
 
     //When a user sends a message through DMs to the bot
