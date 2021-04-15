@@ -2,6 +2,8 @@
 const { dadJoke } = require('./fetchDadJoke.js');
 const { wcData } = require('./fetchWCdata.js');
 const { getOrderStatus } = require('./fetchOrderStatus.js');
+const { search_product } = require('./fetchEkoEndpoint.js');
+
 
 
 //Get discord.js 
@@ -79,6 +81,42 @@ client.on('message', (message) => {
             })
         }
     }
+
+    if (command === 'test'){
+      if(!args.length){
+        message.reply(`This command requires at least 1 argument`);
+      } else {
+        search_product(args)
+        .then( (products) => {
+          message.reply(`any of these match your request?`);
+          products.forEach( (product) => {
+            const productEmbed = {
+              title: `${product.name}`,
+              url: `${product.link}`,
+              description: `**Stock Status**: ${product.stock_status.toUpperCase()}`,
+              thumbnail: {
+                url: `${product.image}`
+              },
+              fields: {
+                name: 'Category',
+                // value: ''
+              }
+            };
+            message.reply({
+              embed: productEmbed
+            });
+          })
+          // console.log(products);
+        } );
+      }
+    }
+
+
+
+
+
+
+
 
     //When a user sends a message through DMs to the bot
     if( message.channel.type == 'dm' ){
