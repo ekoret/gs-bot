@@ -56,6 +56,7 @@ client.on('message', (message) => {
     //     message.reply(`Here are a list of my commands: ${pf}ping ${pf}dadjoke`);
     // }
 
+    //Send a dadjoke
     if (command === 'dadjoke') {
         const theDadJoke = dadJoke;
         theDadJoke.then(joke => {
@@ -63,6 +64,15 @@ client.on('message', (message) => {
         })
     }
 
+    if (command === 'roll'){
+      const deals = ["$25 CREDIT", "$15 CREDIT", "$15 CREDIT", "$10 CREDIT", "$10 CREDIT", "$10 CREDIT", "$10 CREDIT", "$5 CREDIT", "$5 CREDIT", "$5 CREDIT"];
+      const theRoll = Math.floor(Math.random() * 10 + 1)
+      // console.log(deals[theRoll]);
+      const congratsMessage = `congratulations! You've received a ${deals[theRoll]}! Contact an admin or customer service and they'll handle the rest.`;
+      message.reply(congratsMessage);
+    }
+
+    //How long was the response
     if (command === 'ping') {
         const timeTaken = Date.now() - message.createdTimestamp;
         message.reply(`It took ${timeTaken}ms for the reply`);
@@ -82,46 +92,47 @@ client.on('message', (message) => {
     //     }
     // }
 
-    if (command === 'search'){
-      if(!args.length){
-        message.reply(`This command requires at least 1 argument`);
-      } else {
-        search_product(args)
-        .then( (products) => {
+    // if (command === 'search'){
+    //   if(!args.length){
+    //     message.reply(`This command requires at least 1 argument`);
+    //   } else {
+    //     search_product(args)
+    //     .then( (products) => {
 
-          message.reply(`any of these match your request?`);
-          products.forEach( (product) => {
+    //       message.reply(`any of these match your request?`);
+    //       products.forEach( (product) => {
 
-            const productEmbed = {
-              title: `${product.name}`,
-              url: `${product.link}`,
-              description: `**Stock Status**: ${product.stock_status.toUpperCase()}`,
-              thumbnail: {
-                url: `${product.image}`
-              },
-              fields: {
-                name: 'Category',
-                value: `${ product.category.map( (term) => {
-                    return term.name.toUpperCase();
-                })}   \n${product.category_link}`
-              },
-              image: {
-                url: `${product.category_link}`,
-              },
-              timestamp: new Date(),
-            };
-            message.reply({
-              embed: productEmbed
-            }); //end embed
+    //         const productEmbed = {
+    //           title: `${product.name}`,
+    //           url: `${product.link}`,
+    //           description: `**Stock Status**: ${product.stock_status.toUpperCase()}`,
+    //           thumbnail: {
+    //             url: `${product.image}`
+    //           },
+    //           fields: {
+    //             name: 'Category',
+    //             value: `${ product.category.map( (term) => {
+    //                 return term.name.toUpperCase();
+    //             })}   \n${product.category_link}`
+    //           },
+    //           image: {
+    //             url: `${product.category_link}`,
+    //           },
+    //           timestamp: new Date(),
+    //         };
+    //         message.reply({
+    //           embed: productEmbed
+    //         }); //end embed
 
 
-          })//end products foreach
-        } ); //end then
-      }
-    }
+    //       })//end products foreach
+    //     } ); //end then
+    //   }
+    // }
 
 
     //When a user sends a message through DMs to the bot
+    //If the message was sent through DMs
     if( message.channel.type == 'dm' ){
         //Status Command
         if( command === `check` ){
@@ -160,7 +171,7 @@ client.on('message', (message) => {
                 if(args[0] === 'help'){
 
                     const commandEmbed = {
-                        title: 'How to use the !status command',
+                        title: `How to use the ${pf}status command`,
                         description: `2 arguments are needed to give you the current status of your order \n \n Please use the following format when using the command \n **${pf}status [Order Number] [Unique ID]** \n\n Example: ~status 123456 GS-aaa1231`,
                       };
             
