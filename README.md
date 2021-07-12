@@ -44,9 +44,14 @@ The Discord bot has a growing library of custom commands. It can do things like 
 
 ## To do
 
-- Connect to MongoDB
+- ~~Connect to MongoDB~~
 - Add zombie hunt?
-- Add weekly roll
+- ~~Add weekly roll~~
+- Change replies to embeds
+- Clean up and organize DM commands
+- Add log for all previous rewards
+- Limit commands to 2-5 seconds each call
+- Admin commands
 
 [Back To The Top](#react-counter)
 
