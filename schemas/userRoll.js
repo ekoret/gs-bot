@@ -7,17 +7,13 @@ const userSchema = new Schema({
         required: true,
     },
     username: String,
-    ammo: Number,
-    daily: Number,
-    meat: Number,
-    lb: String,
-},
-{
-    timestamps: true,
+    weekly: Number,
+}, {
+    timestamps: true
 })
 
 // https://www.geeksforgeeks.org/mongoose-mongoose-model-function/
 //First argument: name of the model. the method pluraizes the name and looks for a collection matching "users"
-const User = mongoose.model("User", userSchema);
+const UserRoll = mongoose.model("Roll", userSchema);
 
-module.exports = User;
+module.exports = UserRoll;
