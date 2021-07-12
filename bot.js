@@ -7,6 +7,9 @@ const client = new Discord.Client();
 require('dotenv').config();
 const fs = require('fs');
 
+const connectDb = require('./mongodb.js');
+
+connectDb();
 
 
 //Read commands folder
