@@ -1,11 +1,12 @@
 const User = require('../schemas/userRoll');
 
 
-const createRollUser = (messageAuthorId, messageAuthorUsername) =>{
+const createRollUser = (messageAuthorId, messageAuthorUsername, reward) =>{
     const newUser = new User({
         _id: messageAuthorId,
         username: messageAuthorUsername,
         weekly: Date.now(),
+        totalCredits: reward,
     });
 
     newUser.save()

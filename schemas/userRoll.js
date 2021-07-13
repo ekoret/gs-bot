@@ -8,6 +8,7 @@ const userSchema = new Schema({
     },
     username: String,
     weekly: Number,
+    totalCredits: Number,
 }, {
     timestamps: true
 })
