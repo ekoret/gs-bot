@@ -53,11 +53,42 @@ module.exports = {
                     }
                 }
             });
-        } else if(args[0] === "redeem"){
+        } else if(args[0] === "redeem" && args.length == 1){
 
             const redeemMessage = "``There is a minimum redemption amount of $25 CREDITS``\n\n``$25 CREDITS - 1000 POINTS``\n``$50 CREDITS - 2000 + 200 POINTS``\n``$75 CREDITS - 4000 + 400 POINTS``\n``$100 CREDITS - 5000 + 500 POINTS``\n\nContact an admin or customer service with the email address associated with your " + process.env.SITE_NAME + " account to redeem."
             const redeemEmbed = createEmbed(`Redeeming Credits` , redeemMessage);
             message.reply(redeemEmbed);
+
+        } else if(args[0] === "redeem" && args[1] === "minus"){
+            const user = args[2];
+            const prepUser = args[2];
+            const userReg = prepUser.replace(/\D/g, '');
+            const minusAmount = args[3];
+            // console.log(user.replace(/\D/g, ''));
+            message.reply(`Give me 3 seconds to search for user ${user}...`);
+            setTimeout( () => {
+                userRoll.findOne({
+                    _id: userReg
+                }, (err, data) => {
+                    if(err) return console.log("Error finding user for subtracting points", err);
+                    if(!data){  //if there is no data
+                        message.reply(`There was no data found for user ${user}. Did you type the name correctly?`);
+                    } else {    //there is data found
+                        const prevCredits = data.totalCredits;
+                        data.totalCredits -= minusAmount;
+                        data.save()
+                        .then( (res) => {
+                            console.log(`Subtracted \`\`${minusAmount}\`\` from \`\`${prevCredits}\`\` for user \`\`${user}\`\`.`);
+                            message.reply(`Subtracted \`\`${minusAmount} CREDITS\`\` from \`\`${prevCredits} CREDITS\`\` for user \`\`${data.username}\`\`.\nThey now have a total of \`\`${data.totalCredits} CREDITS\`\``);
+                        })
+                        .catch( (err) => {
+                            console.log("Error in subtracting from totalCredits", err);
+                            message.reply(`There was an error subtracting the total credits..`);
+                        })
+                    }
+                })
+            }, 3000);
+
         } else {
             message.reply("This command ``~roll`` does not take that argument! Accepted arguments: ``redeem``");
         }
