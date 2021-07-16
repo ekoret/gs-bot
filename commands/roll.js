@@ -1,6 +1,7 @@
 const userRoll = require('../schemas/userRoll');
 const createRollUser = require('../models/createRollUser');
 const ms = require('parse-ms');
+const createEmbed = require('../createEmbed');
 
 //change name and aliases
 module.exports = {
@@ -16,7 +17,7 @@ module.exports = {
             const rewards = [25, 15, 15, 10, 10, 10, 10, 5, 5, 5];
             const theRoll = Math.floor(Math.random() * 10 + 1); //random number from 1 - 10
             const reward = rewards[theRoll];
-            const congratsMessage = `congratulations! You've received a \`\`${"$" + reward + " CREDIT"}\`\`! Contact an admin or customer service and provide the email address associated with your ${process.env.SITE_NAME} account.`;
+            const congratsMessage = `${message.author.username} congratulations! \n\nYou've received a \`\`${"$" + reward + " CREDIT"}\`\`!\n\nContact an admin or customer service and provide the email address associated with your ${process.env.SITE_NAME} account. \n\n \`\`A minimum of $25 credits is required for redemption.\`\``;
             const theDate = new Date().toString();
             
             userRoll.findById({
@@ -27,32 +28,36 @@ module.exports = {
                 if(!data){  //if the user cannot be found, create a record in Rolls collection
                     console.log("No record found");
                     createRollUser(message.author.id, message.author.username, reward);
-                    message.reply(congratsMessage);
+                    const firstRollEmbed = createEmbed(`${message.author.username} you rolled a $${reward} CREDIT!`, congratsMessage);
+                    message.reply(firstRollEmbed);
                 } else {    //if there is data => so the user is found
                     if(timeout - (now - data.weekly) > 0){   //if the timer is not over yet
                         const timeLeft = ms(timeout - (now - data.weekly));
                         console.log(`${message.author.username} tried rolling but is timed out!`);
-                        message.reply(`you've already used your weekly roll! Roll again in \`\`${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s\`\``);
+                        const alreadyRolledEmbed = createEmbed(`${message.author.username}, you've already rolled this week!`, `Roll again in \`\`${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s\`\` \n Total Credits: \`\`$${data.totalCredits}\`\``);
+                        message.reply(alreadyRolledEmbed);
                     } else { //if the timer is over, so they can claim their reward
                         data.totalCredits += reward;
                         data.weekly = now;   //reset the timer
                         data.save()
                         .then( res => { //when saving to db is successful
                             console.log(`Weekly timer successfully reset for ${message.author.username}`, res);
-                            message.reply(`${congratsMessage} Roll again in \`\`${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s\`\``);
-                            message.reply(`You now have a total of ${data.totalCredits} credits`);
+                            const rollSuccess = createEmbed(`${message.author.username}, you now have $${data.totalCredits} of Credits!`, congratsMessage);
+                            message.reply(rollSuccess);
                         })
                         .catch( err => {    //error in saving to db
                             console.log(`Error saving weekly timer to database for ${message.author.username}`, err);
-                            message.reply(`There was an error with your roll. Contact an admin!`);
+                            const errorEmbed = createEmbed(`${message.author.username}, something went wrong!`, `Contact ${process.env.ADMIN_USER}!`)
+                            message.reply(errorEmbed);
                         });
-    
                     }
-                
                 }
             });
         } else if(args[0] === "redeem"){
-            message.reply(`Here's the menu: $25 CREDIT = 1000 POINTS, $50 CREDIT = 2000 + 200 POINTS, $75 CREDIT = 4000 + 400 POINTS. Message customer service or an admin with your email address associated with your ${process.env.SITE_NAME} account`);
+
+            const redeemMessage = "``There is a minimum redemption amount of $25 CREDITS``\n\n``$25 CREDITS - 1000 POINTS``\n``$50 CREDITS - 2000 + 200 POINTS``\n``$75 CREDITS - 4000 + 400 POINTS``\n``$100 CREDITS - 5000 + 500 POINTS``\n\nContact an admin or customer service with the email address associated with your " + process.env.SITE_NAME + " account to redeem."
+            const redeemEmbed = createEmbed(`Redeeming Credits` , redeemMessage);
+            message.reply(redeemEmbed);
         } else {
             message.reply("This command ``~roll`` does not take that argument! Accepted arguments: ``redeem``");
         }
