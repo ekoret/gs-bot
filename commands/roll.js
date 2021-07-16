@@ -52,7 +52,6 @@ module.exports = {
                 }
             });
         } else if(args[0] === "redeem"){
-            console.log("redeeeeeeming");
             message.reply(`Here's the menu: $25 CREDIT = 1000 POINTS, $50 CREDIT = 2000 + 200 POINTS, $75 CREDIT = 4000 + 400 POINTS. Message customer service or an admin with your email address associated with your ${process.env.SITE_NAME} account`);
         } else {
             message.reply("This command ``~roll`` does not take that argument! Accepted arguments: ``redeem``");

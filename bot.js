@@ -169,6 +169,8 @@ client.on('message', (message) => {
       client.commands.get('dadjoke').execute(message, args);
     } else if (command === 'roll'){
       client.commands.get('roll').execute(message, args);
+    } else if (command === 'commands'){
+      client.commands.get('commands').execute(message, args);
     } else {
       return message.channel.send(`${message.author} that is not a valid command. Use \`\`${pf}help\`\` for commands.`);
     }
