@@ -11,7 +11,7 @@ module.exports = {
 
         const timeout = 604800000; //in milliseconds
         const now = Date.now();
-        const rewards = [25, 15, 15, 10, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5];
+        const rewards = [25, 15, 15, 15, 10, 10, 10, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5];
         const theRoll = Math.floor(Math.random() * rewards.length); //random integer from 0 - 9
         const reward = rewards[theRoll];
         const congratsMessage = `${message.author.username} congratulations! \n\nYou've received a \`\`${"$" + reward + " CREDIT"}\`\`!\n\nContact an admin or customer service and provide the email address associated with your ${process.env.SITE_NAME} account. \n\n \`\`A minimum of $25 credits is required for redemption.\`\``;
