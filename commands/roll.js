@@ -54,7 +54,7 @@ module.exports = {
             });
         } else if(args[0] === "redeem" && args.length == 1){
 
-            const redeemMessage = "``There is a minimum redemption amount of $25 CREDITS``\n\n``$25 CREDITS - 1000 POINTS``\n``$50 CREDITS - 2000 + 200 POINTS``\n``$75 CREDITS - 4000 + 400 POINTS``\n``$100 CREDITS - 5000 + 500 POINTS``\n\nContact an admin or customer service with the email address associated with your " + process.env.SITE_NAME + " account to redeem."
+            const redeemMessage = "``There is a minimum redemption amount of $25 CREDITS``\n\n``$25 CREDITS - 1000 POINTS``\n``$50 CREDITS - 2000 + 100 POINTS``\n``$75 CREDITS - 3000 + 200 POINTS``\n``$100 CREDITS - 4000 + 400 POINTS``\n\nContact GS.Support with the amount you'd like to redeem and the email address associated with your " + process.env.SITE_NAME + " account to redeem."
             const redeemEmbed = createEmbed(`Redeeming Credits` , redeemMessage);
             message.reply(redeemEmbed);
 
