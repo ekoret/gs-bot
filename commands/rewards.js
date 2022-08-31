@@ -12,7 +12,7 @@ module.exports = {
 		const commandText = getTableText('rewards');
 
 		embed.setDescription(
-			`\`There is a minimum redemption amount of $25 CREDITS\`\n\n${commandText}\n\nContact \`GS.Support\` with the amount you'd like to redeem along with the email address associated with your ${config.companyName} account.`
+			`\`There is a minimum redemption amount of $25 CREDITS\`\n\n${commandText}\n\nContact \`${config.customerSupportUser}\` with the amount you'd like to redeem along with the email address associated with your ${config.companyName} account.`
 		);
 
 		await interaction.reply({ embeds: [embed] });

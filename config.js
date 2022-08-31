@@ -6,6 +6,7 @@ const config = {
 	companyName: process.env.COMPANY_NAME,
 	guildId: process.env.GUILD_ID,
 	adminUser: process.env.ADMIN_USER,
+	customerSupportUser: process.env.CUSTOMER_SUPPORT_USER,
 };
 
 module.exports = config;
