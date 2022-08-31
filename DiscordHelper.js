@@ -41,6 +41,19 @@ function readCommandFilesDeploy() {
 	return commands;
 }
 
+function getCommandLegendText() {
+	const commandsLegend = require('./commandsLegend');
+
+	let commandText = '';
+	for (let value in commandsLegend) {
+		let commandName = value;
+		let commandDescription = commandsLegend[value];
+
+		commandText += `\`${commandName} - ${commandDescription}\`\n`;
+	}
+	return commandText;
+}
+
 module.exports = {
 	SlashCommandBuilder,
 	Client,
@@ -50,4 +63,5 @@ module.exports = {
 	REST,
 	readCommandFiles,
 	readCommandFilesDeploy,
+	getCommandLegendText,
 };
