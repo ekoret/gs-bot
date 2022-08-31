@@ -2,9 +2,9 @@ const { SlashCommandBuilder } = require('../DiscordHelper');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('goodbye')
-		.setDescription('Replies with goodbye!'),
+		.setName('greetings')
+		.setDescription('Replies with a greeting!'),
 	async execute(interaction) {
-		await interaction.reply('Goodbye!');
+		await interaction.reply('HelloOOOoooooOOOOoooo!');
 	},
 };
