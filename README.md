@@ -1,11 +1,5 @@
 # gs-bot
 
-![GS BOT](link-to-img)
-
-> This is a custom Discord bot that uses the Discord.js library. The bot is a for-fun project that is on-going and a way to learn Nodejs, Discordjs, MongoDB, and more. I will be adding new things as time goes on and as my experience grows.
-
----
-
 ### Table of Contents
 
 - [Description](#description)
@@ -16,7 +10,15 @@
 
 ## Description
 
+This is a custom Discord bot that uses the Discord.js library. The bot is a for-fun project that is on-going and a way to learn Nodejs, Discordjs, MongoDB, and more. I will be adding new things as time goes on and as my experience grows.
+
 #### Technologies
+
+- discord.js `v14.3.0`
+- dotenv `v16.0.2`
+- discordjs/rest `v1.1.0`
+- eslint `v8.23.0`
+- nodemon `v2.0.19`
 
 [Back To The Top](#react-counter)
 
@@ -26,7 +28,7 @@
 
 #### Installation
 
-#### App Usage
+#### Enviroment Variables
 
 [Back To The Top](#react-counter)
 
@@ -47,4 +49,6 @@ What is the difference between using interaction.isCommand() vs interaction.isCh
 
 ## References
 
-[Back To The Top](#react-counter)
+- Discord.js Official Documentation - https://discord.js.org/
+- Guide for Building Discord Bot - https://discordjs.guide/  
+  [Back To The Top](#react-counter)
