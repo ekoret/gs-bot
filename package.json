@@ -1,0 +1,28 @@
+{
+	"name": "gs-bot",
+	"version": "1.0.0",
+	"description": "![GS BOT](link-to-img)",
+	"main": "index.js",
+	"scripts": {
+		"watch": "nodemon index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/eko-develops/gs-bot.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/eko-develops/gs-bot/issues"
+	},
+	"homepage": "https://github.com/eko-develops/gs-bot#readme",
+	"dependencies": {
+		"discord.js": "^14.3.0",
+		"dotenv": "^16.0.2"
+	},
+	"devDependencies": {
+		"eslint": "^8.23.0",
+		"nodemon": "^2.0.19"
+	}
+}
