@@ -38,6 +38,13 @@
 
 ---
 
+## Questions
+
+What is the difference between using interaction.isCommand() vs interaction.isChatInputCommand()?  
+[Back To The Top](#react-counter)
+
+---
+
 ## References
 
 [Back To The Top](#react-counter)
