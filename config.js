@@ -5,6 +5,7 @@ const config = {
 	client: process.env.BOT_CLIENT_ID,
 	companyName: process.env.COMPANY_NAME,
 	guildId: process.env.GUILD_ID,
+	adminUser: process.env.ADMIN_USER,
 };
 
 module.exports = config;
