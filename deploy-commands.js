@@ -1,12 +1,10 @@
-require('dotenv').config();
-const fs = require('node:fs');
-const path = require('node:path');
-const { Routes } = require('discord.js');
-const { REST } = require('@discordjs/rest');
+const config = require('./config');
+const { fs, path } = require('./NodeHelper');
+const { Routes, REST } = require('./DiscordHelper');
 
-const CLIENT_ID = process.env.BOT_CLIENT_ID;
-const TOKEN = process.env.BOT_TOKEN;
-const GUILD_ID = process.env.DEV_GUILD_ID;
+const CLIENT_ID = config.client;
+const TOKEN = config.token;
+const GUILD_ID = config.guildId;
 
 const commands = [];
 const commandsPath = path.join(__dirname, 'commands');
@@ -32,14 +30,14 @@ rest
 	)
 	.catch(console.error);
 
-// //removing commands
-// //guild based
+//removing commands
+//guild based
 // rest
 // 	.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), { body: [] })
 // 	.then(() => console.log('Successfully deleted all guild commands.'))
 // 	.catch(console.error);
 
-// //global based
+//global based
 // rest
 // 	.put(Routes.applicationCommands(CLIENT_ID), { body: [] })
 // 	.then(() => console.log('Successfully deleted all application commands.'))
