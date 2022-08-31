@@ -1,6 +1,6 @@
 # gs-bot
 
-> Version 0.1.0 is the basic structure and starting point for the Discord bot. This is a good starting point for the bot as it contains boilerplate code for starting the bot, handling, reading, and deploying commands, eslint, and a config file that is configured with enviroment variables. You can opt out of using enviroment variables by just adjusting the values in the config file.
+> Version 0.1.1 has completed all the basic commands needed to run the bot. There is still no database connection. In the next version I will start implementing the database connection.
 
 ### Table of Contents
 
