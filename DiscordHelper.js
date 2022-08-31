@@ -41,13 +41,20 @@ function readCommandFilesDeploy() {
 	return commands;
 }
 
-function getCommandLegendText() {
-	const commandsLegend = require('./commandsLegend');
+function getTableText(type) {
+	let table;
+	if (type === 'commands') {
+		const { commands } = require('./tables');
+		table = commands;
+	} else if (type === 'rewards') {
+		const { rewards } = require('./tables');
+		table = rewards;
+	}
 
 	let commandText = '';
-	for (let value in commandsLegend) {
+	for (let value in table) {
 		let commandName = value;
-		let commandDescription = commandsLegend[value];
+		let commandDescription = table[value];
 
 		commandText += `\`${commandName} - ${commandDescription}\`\n`;
 	}
@@ -63,5 +70,5 @@ module.exports = {
 	REST,
 	readCommandFiles,
 	readCommandFilesDeploy,
-	getCommandLegendText,
+	getTableText,
 };

@@ -10,7 +10,6 @@ function main() {
 
 	const rest = new REST({ version: '10' }).setToken(TOKEN);
 
-	//for registering global commands
 	rest
 		.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), {
 			body: commands,
