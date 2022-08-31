@@ -1,23 +1,12 @@
 const config = require('./config');
-const { fs, path } = require('./NodeHelper');
-const { Routes, REST } = require('./DiscordHelper');
+const { Routes, REST, readCommandFilesDeploy } = require('./DiscordHelper');
 
 const CLIENT_ID = config.client;
 const TOKEN = config.token;
 const GUILD_ID = config.guildId;
 
 function main() {
-	const commands = [];
-	const commandsPath = path.join(__dirname, 'commands');
-	const commandFiles = fs
-		.readdirSync(commandsPath)
-		.filter((file) => file.endsWith('.js'));
-
-	for (const file of commandFiles) {
-		const filePath = path.join(commandsPath, file);
-		const command = require(filePath);
-		commands.push(command.data.toJSON());
-	}
+	const commands = readCommandFilesDeploy();
 
 	const rest = new REST({ version: '10' }).setToken(TOKEN);
 
