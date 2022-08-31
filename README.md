@@ -8,7 +8,6 @@
 
 ### Table of Contents
 
-
 - [Description](#description)
 - [How To Use](#how-to-use)
 - [References](#references)
@@ -16,15 +15,8 @@
 ---
 
 ## Description
-The Discord bot has a growing library of custom commands. It can do things like get a dad joke through an API, connects to a database to track any data from mini-games, checking order statues from a WordPress e-commerce website, and more. 
 
 #### Technologies
-
-- discord.js - **12.5.1**   https://discord.js.org/
-- dotenv - **8.2.0**    https://www.npmjs.com/package/dotenv
-- fs    https://www.npmjs.com/package/fs
-- axios - **0.21.1**    https://www.npmjs.com/package/axios
-- @woocommerce/woocommerce-rest-api - **1.0.1** https://github.com/woocommerce/woocommerce-rest-api-js-lib
 
 [Back To The Top](#react-counter)
 
@@ -34,9 +26,7 @@ The Discord bot has a growing library of custom commands. It can do things like 
 
 #### Installation
 
-
 #### App Usage
-
 
 [Back To The Top](#react-counter)
 
@@ -44,22 +34,10 @@ The Discord bot has a growing library of custom commands. It can do things like 
 
 ## To do
 
-- ~~Connect to MongoDB~~
-- Add zombie hunt?
-- ~~Add weekly roll~~
-- Change replies to embeds
-- Clean up and organize DM commands
-- Add log for all previous rewards
-- Limit commands to 2-5 seconds each call
-- Admin commands
-
 [Back To The Top](#react-counter)
 
 ---
 
 ## References
-
-
-
 
 [Back To The Top](#react-counter)
