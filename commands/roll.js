@@ -1,3 +1,4 @@
+const createUser = require('../controllers/modelController');
 const { SlashCommandBuilder } = require('../DiscordHelper');
 const createEmbed = require('../EmbedHelper');
 
@@ -6,8 +7,10 @@ module.exports = {
 		.setName('roll')
 		.setDescription('Get a chance to receive free credits!'),
 	async execute(interaction) {
-		const embed = createEmbed('Congratulations!', `You just rolled a`);
+		// const embed = createEmbed('Congratulations!', `You just rolled a`);
 
-		await interaction.reply({ embeds: [embed] });
+		createUser(interaction.user.id, interaction.user.username, 10);
+
+		await interaction.reply('New user added to db');
 	},
 };
