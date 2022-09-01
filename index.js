@@ -4,8 +4,10 @@ const {
 	GatewayIntentBits,
 } = require('./DiscordHelper');
 const config = require('./config');
+const connectDb = require('./DatabaseHelper');
 
 function main() {
+	connectDb();
 	const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 	//Handling commands

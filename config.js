@@ -7,6 +7,7 @@ const config = {
 	guildId: process.env.GUILD_ID,
 	adminUser: process.env.ADMIN_USER,
 	customerSupportUser: process.env.CUSTOMER_SUPPORT_USER,
+	mongodbSrv: process.env.MONGO_SRV,
 };
 
 module.exports = config;
