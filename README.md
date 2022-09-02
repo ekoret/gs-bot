@@ -1,6 +1,6 @@
 # gs-bot
 
-> Version 0.1.2 has all the basic commands now implemented. At this point, there is still no database connection or commands that trigger database queries. In this version, I will be working on connecting to the database.
+> Version 0.1.3 has the database connection and the reading and writing functions that we need for the bot to work. This version will mainly focus on classifying whatever we can and also refactoring.
 
 ### Table of Contents
 
