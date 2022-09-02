@@ -28,9 +28,20 @@ This is a custom Discord bot that uses the Discord.js library. The bot is a for-
 
 ## How To Use
 
-#### Installation
+### Installation
 
-#### Enviroment Variables
+Clone the git project. Command line into the folder and use `npm install` to install all the packages. Create a `.env` file and add the enviroment variables from the list below.  
+You can then use `node index.js` from the root of the project folder to start the bot. You can also use `npm run watch` to run the bot with nodemon. This method is useful for debugging and development.
+
+### Enviroment Variables
+
+- BOT_TOKEN
+- BOT_CLIENT_ID
+- GUILD_ID
+- COMPANY_NAME
+- ADMIN_USER
+- CUSTOMER_SUPPORT_USER
+- MONGO_SRV
 
 [Back To The Top](#react-counter)
 
