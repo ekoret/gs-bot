@@ -1,8 +1,4 @@
-const {
-	Client,
-	readCommandFiles,
-	GatewayIntentBits,
-} = require('./DiscordHelper');
+const { Client, DiscordHelper, GatewayIntentBits } = require('./DiscordHelper');
 const config = require('./config');
 const DatabaseHelper = require('./DatabaseHelper');
 
@@ -12,7 +8,7 @@ function main() {
 	const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 	//Handling commands
-	readCommandFiles(client);
+	DiscordHelper.readCommandFiles(client);
 
 	// When the client is ready, run this code (only once)
 	client.once('ready', () => {

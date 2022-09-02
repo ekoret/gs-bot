@@ -1,12 +1,12 @@
 const config = require('./config');
-const { Routes, REST, readCommandFilesDeploy } = require('./DiscordHelper');
+const { Routes, REST, DiscordHelper } = require('./DiscordHelper');
 
 const CLIENT_ID = config.client;
 const TOKEN = config.token;
 const GUILD_ID = config.guildId;
 
 function main() {
-	const commands = readCommandFilesDeploy();
+	const commands = DiscordHelper.readCommandFilesDeploy();
 
 	const rest = new REST({ version: '10' }).setToken(TOKEN);
 

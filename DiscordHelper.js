@@ -10,55 +10,57 @@ const {
 
 const { REST } = require('@discordjs/rest');
 
-function readCommandFiles(client) {
-	client.commands = new Collection();
-	const commandsPath = path.join(__dirname, 'commands');
-	const commandFiles = fs
-		.readdirSync(commandsPath)
-		.filter((file) => file.endsWith('.js'));
+class DiscordHelper {
+	static readCommandFiles(client) {
+		client.commands = new Collection();
+		const commandsPath = path.join(__dirname, 'commands');
+		const commandFiles = fs
+			.readdirSync(commandsPath)
+			.filter((file) => file.endsWith('.js'));
 
-	for (const file of commandFiles) {
-		const filePath = path.join(commandsPath, file);
-		const command = require(filePath);
-		// Set a new item in the Collection
-		// With the key as the command name and the value as the exported module
-		client.commands.set(command.data.name, command);
-	}
-}
-
-function readCommandFilesDeploy() {
-	const commands = [];
-	const commandsPath = path.join(__dirname, 'commands');
-	const commandFiles = fs
-		.readdirSync(commandsPath)
-		.filter((file) => file.endsWith('.js'));
-
-	for (const file of commandFiles) {
-		const filePath = path.join(commandsPath, file);
-		const command = require(filePath);
-		commands.push(command.data.toJSON());
-	}
-	return commands;
-}
-
-function getTableText(type) {
-	let table;
-	if (type === 'commands') {
-		const { commands } = require('./tables');
-		table = commands;
-	} else if (type === 'rewards') {
-		const { rewards } = require('./tables');
-		table = rewards;
+		for (const file of commandFiles) {
+			const filePath = path.join(commandsPath, file);
+			const command = require(filePath);
+			// Set a new item in the Collection
+			// With the key as the command name and the value as the exported module
+			client.commands.set(command.data.name, command);
+		}
 	}
 
-	let commandText = '';
-	for (let value in table) {
-		let commandName = value;
-		let commandDescription = table[value];
+	static readCommandFilesDeploy() {
+		const commands = [];
+		const commandsPath = path.join(__dirname, 'commands');
+		const commandFiles = fs
+			.readdirSync(commandsPath)
+			.filter((file) => file.endsWith('.js'));
 
-		commandText += `\`${commandName} - ${commandDescription}\`\n`;
+		for (const file of commandFiles) {
+			const filePath = path.join(commandsPath, file);
+			const command = require(filePath);
+			commands.push(command.data.toJSON());
+		}
+		return commands;
 	}
-	return commandText;
+
+	static getTableText(type) {
+		let table;
+		if (type === 'commands') {
+			const { commands } = require('./tables');
+			table = commands;
+		} else if (type === 'rewards') {
+			const { rewards } = require('./tables');
+			table = rewards;
+		}
+
+		let commandText = '';
+		for (let value in table) {
+			let commandName = value;
+			let commandDescription = table[value];
+
+			commandText += `\`${commandName} - ${commandDescription}\`\n`;
+		}
+		return commandText;
+	}
 }
 
 module.exports = {
@@ -68,7 +70,5 @@ module.exports = {
 	GatewayIntentBits,
 	Routes,
 	REST,
-	readCommandFiles,
-	readCommandFilesDeploy,
-	getTableText,
+	DiscordHelper,
 };
