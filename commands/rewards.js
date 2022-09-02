@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, getTableText } = require('../DiscordHelper');
-const createEmbed = require('../EmbedHelper');
+const EmbedHelper = require('../EmbedHelper');
 const config = require('../config');
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
 		.setName('rewards')
 		.setDescription('View the redemption amount for credits to points.'),
 	async execute(interaction) {
-		const embed = createEmbed('Rewards', ` `);
+		const embed = EmbedHelper.createEmbed('Rewards', ` `);
 
 		const commandText = getTableText('rewards');
 
