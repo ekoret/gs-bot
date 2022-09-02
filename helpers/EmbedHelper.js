@@ -40,13 +40,19 @@ class EmbedHelper {
 	static getTimeoutLength(weekly) {
 		const now = Date.now();
 
-		const timeLeft = ms(config.timeout - (now - weekly));
-		console.log([
-			timeLeft.days,
-			timeLeft.hours,
-			timeLeft.minutes,
-			timeLeft.seconds,
-		]);
+		const timeLeft = config.timeout - (now - weekly);
+
+		let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+		let seconds = Math.floor((timeLeft / 1000) % 60);
+		let minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+		let hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+
+		days = days < 10 ? '0' + days : days;
+		hours = hours < 10 ? '0' + hours : hours;
+		minutes = minutes < 10 ? '0' + minutes : minutes;
+		seconds = seconds < 10 ? '0' + seconds : seconds;
+
+		return `\`${days}d ${hours}h ${minutes}m ${seconds}s\``;
 	}
 }
 
