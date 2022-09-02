@@ -21,14 +21,13 @@ function main() {
 		)
 		.catch(console.error);
 
-	//removing commands
-	//guild based
+	// Removing Guild Based Commands
 	// rest
 	// 	.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), { body: [] })
 	// 	.then(() => console.log('Successfully deleted all guild commands.'))
 	// 	.catch(console.error);
 
-	//global based
+	// Removing Global Based Commands
 	// rest
 	// 	.put(Routes.applicationCommands(CLIENT_ID), { body: [] })
 	// 	.then(() => console.log('Successfully deleted all application commands.'))

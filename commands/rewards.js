@@ -10,7 +10,7 @@ module.exports = {
 		.setName('rewards')
 		.setDescription('View the redemption amount for credits to points.'),
 	async execute(interaction) {
-		const embed = EmbedHelper.createEmbed('Rewards', ` `);
+		const embed = EmbedHelper.createEmbed('Rewards', ' ');
 
 		const commandText = DiscordHelper.getTableText('rewards');
 

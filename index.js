@@ -11,7 +11,7 @@ function main() {
 
 	const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-	//Handling commands
+	// Handling commands
 	DiscordHelper.readCommandFiles(client);
 
 	// When the client is ready, run this code (only once)

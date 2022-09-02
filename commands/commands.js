@@ -12,7 +12,7 @@ module.exports = {
 		.setName('commands')
 		.setDescription('View the list of commands.'),
 	async execute(interaction) {
-		const embed = EmbedHelper.createEmbed('List of Commands', ` `);
+		const embed = EmbedHelper.createEmbed('List of Commands', ' ');
 
 		const commandText = DiscordHelper.getTableText('commands');
 

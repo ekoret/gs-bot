@@ -53,9 +53,9 @@ class DiscordHelper {
 		}
 
 		let commandText = '';
-		for (let value in table) {
-			let commandName = value;
-			let commandDescription = table[value];
+		for (const value in table) {
+			const commandName = value;
+			const commandDescription = table[value];
 
 			commandText += `\`${commandName} - ${commandDescription}\`\n`;
 		}
