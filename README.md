@@ -1,6 +1,6 @@
 # gs-bot
 
-> Version 0.1.3 has the database connection and the reading and writing functions that we need for the bot to work. This version will mainly focus on classifying whatever we can and also refactoring.
+> Version 0.1.4 now has all the embeds completed and basic functionality of the bot. I now need to add commands for admins to use to add and subtract from users total.
 
 ### Table of Contents
 
