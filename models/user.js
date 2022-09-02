@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const { mongoose } = require('../helpers/DatabaseHelper');
 
 const userSchema = new mongoose.Schema(
 	{

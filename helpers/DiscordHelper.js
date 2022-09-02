@@ -13,7 +13,7 @@ const { REST } = require('@discordjs/rest');
 class DiscordHelper {
 	static readCommandFiles(client) {
 		client.commands = new Collection();
-		const commandsPath = path.join(__dirname, 'commands');
+		const commandsPath = path.join(__dirname, '../', 'commands');
 		const commandFiles = fs
 			.readdirSync(commandsPath)
 			.filter((file) => file.endsWith('.js'));
@@ -29,7 +29,7 @@ class DiscordHelper {
 
 	static readCommandFilesDeploy() {
 		const commands = [];
-		const commandsPath = path.join(__dirname, 'commands');
+		const commandsPath = path.join(__dirname, '../', 'commands');
 		const commandFiles = fs
 			.readdirSync(commandsPath)
 			.filter((file) => file.endsWith('.js'));
@@ -45,10 +45,10 @@ class DiscordHelper {
 	static getTableText(type) {
 		let table;
 		if (type === 'commands') {
-			const { commands } = require('./tables');
+			const { commands } = require('../tables');
 			table = commands;
 		} else if (type === 'rewards') {
-			const { rewards } = require('./tables');
+			const { rewards } = require('../tables');
 			table = rewards;
 		}
 

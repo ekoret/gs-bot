@@ -1,6 +1,10 @@
-const { Client, DiscordHelper, GatewayIntentBits } = require('./DiscordHelper');
+const {
+	Client,
+	DiscordHelper,
+	GatewayIntentBits,
+} = require('./helpers/DiscordHelper');
 const config = require('./config');
-const DatabaseHelper = require('./DatabaseHelper');
+const { DatabaseHelper } = require('./helpers/DatabaseHelper');
 
 function main() {
 	DatabaseHelper.connectDb();

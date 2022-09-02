@@ -4,7 +4,7 @@ const {
 	userCanRoll,
 	createUser,
 } = require('../controllers/userController');
-const { SlashCommandBuilder } = require('../DiscordHelper');
+const { SlashCommandBuilder } = require('../helpers/DiscordHelper');
 
 module.exports = {
 	data: new SlashCommandBuilder()

@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('../config');
 const { EmbedBuilder } = require('discord.js');
 
 class EmbedHelper {

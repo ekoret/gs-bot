@@ -15,7 +15,7 @@ const createUser = async (messageAuthorId, messageAuthorUsername) => {
 			console.log('Error saving user', err);
 			return;
 		}
-		// saved!
+		console.log('New user saved!', { newUser });
 	});
 
 	return { newUser, reward };

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const config = require('./config');
+const config = require('../config');
 
 class DatabaseHelper {
 	static connectDb() {
@@ -12,4 +12,4 @@ class DatabaseHelper {
 	}
 }
 
-module.exports = DatabaseHelper;
+module.exports = { DatabaseHelper, mongoose };

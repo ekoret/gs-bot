@@ -1,5 +1,5 @@
 const config = require('./config');
-const { Routes, REST, DiscordHelper } = require('./DiscordHelper');
+const { Routes, REST, DiscordHelper } = require('./helpers/DiscordHelper');
 
 const CLIENT_ID = config.client;
 const TOKEN = config.token;

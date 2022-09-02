@@ -1,8 +1,11 @@
 /*
     To edit the list of commands when using the /command command, edit the commandsLegend.js file.
 */
-const { SlashCommandBuilder, DiscordHelper } = require('../DiscordHelper');
-const EmbedHelper = require('../EmbedHelper');
+const {
+	SlashCommandBuilder,
+	DiscordHelper,
+} = require('../helpers/DiscordHelper');
+const EmbedHelper = require('../helpers/EmbedHelper');
 
 module.exports = {
 	data: new SlashCommandBuilder()
