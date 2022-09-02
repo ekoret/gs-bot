@@ -44,4 +44,15 @@ const getRandomReward = () => {
 	return reward;
 };
 
-module.exports = { createUser, findUser, rewardUser };
+const userCanRoll = (user) => {
+	const timeout = 604800000;
+	const now = Date.now();
+
+	if (timeout - (now - user.weekly) > 0) {
+		return false;
+	}
+
+	return true;
+};
+
+module.exports = { createUser, findUser, rewardUser, userCanRoll };

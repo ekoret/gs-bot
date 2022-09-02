@@ -1,4 +1,8 @@
-const { findUser, rewardUser } = require('../controllers/userController');
+const {
+	findUser,
+	rewardUser,
+	userCanRoll,
+} = require('../controllers/userController');
 const { SlashCommandBuilder } = require('../DiscordHelper');
 
 module.exports = {
@@ -13,8 +17,9 @@ module.exports = {
 		if (user === null) {
 			//There was no user found, we'll need to create one.
 			await interaction.reply('');
-		} else if (false) {
+		} else if (!userCanRoll(user)) {
 			//We need to check if the user is timed-out.
+			await interaction.reply('You cannot roll!');
 		} else {
 			//There was a user found, so we can update the user.
 			const { updatedUser, reward } = await rewardUser(user);
