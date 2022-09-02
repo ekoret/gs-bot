@@ -20,8 +20,9 @@ module.exports = {
 			// There was no user found, we'll need to create one, add a reward.
 			const username = interaction.user.username;
 
-			const { newUser, reward } = createUser(id, username);
-			await interaction.reply('New user created and rolled');
+			const { newUser, reward } = await createUser(id, username);
+			const newUserEmbed = EmbedHelper.getUserRolledEmbed(newUser, reward);
+			await interaction.reply({ embeds: [newUserEmbed] });
 		} else if (!userCanRoll(user.weekly)) {
 			// We need to check if the user is timed-out.
 			const cannotRollEmbed = EmbedHelper.getTimedOutEmbed(user);
