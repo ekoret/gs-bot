@@ -1,6 +1,8 @@
 const User = require('../models/user');
 
-const createUser = async (messageAuthorId, messageAuthorUsername, reward) => {
+const createUser = async (messageAuthorId, messageAuthorUsername) => {
+	const reward = getRandomReward();
+
 	const newUser = new User({
 		_id: messageAuthorId,
 		username: messageAuthorUsername,
@@ -8,14 +10,15 @@ const createUser = async (messageAuthorId, messageAuthorUsername, reward) => {
 		totalCredits: reward,
 	});
 
-	await newUser
-		.save()
-		.then((res) => {
-			console.log(
-				`User ${messageAuthorId}, ${messageAuthorUsername} has been added to the weekly lottery!`
-			);
-		})
-		.catch((err) => console.log('Error has occured creating user =>', err));
+	newUser.save((err) => {
+		if (err) {
+			console.log('Error saving user', err);
+			return;
+		}
+		// saved!
+	});
+
+	return { newUser, reward };
 };
 
 const findUser = async (id) => {
@@ -44,11 +47,11 @@ const getRandomReward = () => {
 	return reward;
 };
 
-const userCanRoll = (user) => {
+const userCanRoll = (userWeekly) => {
 	const timeout = 604800000;
 	const now = Date.now();
 
-	if (timeout - (now - user.weekly) > 0) {
+	if (timeout - (now - userWeekly) > 0) {
 		return false;
 	}
 

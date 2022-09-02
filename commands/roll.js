@@ -2,6 +2,7 @@ const {
 	findUser,
 	rewardUser,
 	userCanRoll,
+	createUser,
 } = require('../controllers/userController');
 const { SlashCommandBuilder } = require('../DiscordHelper');
 
@@ -15,16 +16,18 @@ module.exports = {
 		const user = await findUser(id);
 
 		if (user === null) {
-			//There was no user found, we'll need to create one.
-			await interaction.reply('');
-		} else if (!userCanRoll(user)) {
+			//There was no user found, we'll need to create one, add a reward.
+			const username = interaction.user.username;
+
+			const { newUser, reward } = createUser(id, username);
+			await interaction.reply('New user created and rolled');
+		} else if (!userCanRoll(user.weekly)) {
 			//We need to check if the user is timed-out.
 			await interaction.reply('You cannot roll!');
 		} else {
 			//There was a user found, so we can update the user.
 			const { updatedUser, reward } = await rewardUser(user);
-			console.log({ updatedUser, reward });
-			await interaction.reply('credits added');
+			await interaction.reply('User exists added credits');
 		}
 	},
 };
