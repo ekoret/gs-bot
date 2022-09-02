@@ -19,7 +19,31 @@ class EmbedHelper {
 		const embed = new EmbedBuilder()
 			.setColor('#046738')
 			.setTitle(`${user.username}, you've already rolled this week!`)
-			// .setDescription('You can roll again in `99d 10h 59m 23s`')
+			.addFields(
+				{
+					name: 'Time Left',
+					value: this.getTimeoutLength(user.weekly),
+				},
+				{
+					name: 'Your Total Credits',
+					value: `\`${user.totalCredits.toString()}\``,
+				}
+			)
+			.setTimestamp()
+			.setFooter({
+				text: `${config.companyName} | Any issues with the bot please contact ${config.adminUser}`,
+			});
+		return embed;
+	}
+
+	static getUserRolledEmbed(user, reward) {
+		const embed = new EmbedBuilder()
+			.setColor('#046738')
+			.setTitle(`${user.username}, you received $${reward} of credits!`)
+			.setDescription(
+				`Congratulations! You got a \`$${reward} credit\`!\n\nIf you'd like to redeem your points, contact an admin or customer service and \`provide your email address\` associated with your ${config.companyName} account.\n\n\`A minimum of $25 credits is required for redemption.\`
+				`
+			)
 			.addFields(
 				{
 					name: 'Time Left',

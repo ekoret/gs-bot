@@ -29,7 +29,11 @@ module.exports = {
 		} else {
 			// There was a user found, so we can update the user.
 			const { updatedUser, reward } = await rewardUser(user);
-			await interaction.reply('User exists added credits');
+			const updatedUserRollEmbed = EmbedHelper.getUserRolledEmbed(
+				updatedUser,
+				reward
+			);
+			await interaction.reply({ embeds: [updatedUserRollEmbed] });
 		}
 	},
 };
