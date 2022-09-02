@@ -36,7 +36,10 @@ This is a custom Discord bot that uses the Discord.js library. The bot is a for-
 
 ---
 
-## To do
+## To Do
+
+- REFACTOR!
+- Add content to readme
 
 [Back To The Top](#react-counter)
 
@@ -44,13 +47,19 @@ This is a custom Discord bot that uses the Discord.js library. The bot is a for-
 
 ## Questions
 
-What is the difference between using interaction.isCommand() vs interaction.isChatInputCommand()?  
-[Back To The Top](#react-counter)
+- What is the difference between using `interaction.isCommand()` vs `interaction.isChatInputCommand()`?
+- Should controllers be classes?
+- Should I group all "helpers" into a folder?
+- Is it possible to turn NodeHelper into a class? If I can, is there any point?
+
+  [Back To The Top](#react-counter)
 
 ---
 
 ## References
 
 - Discord.js Official Documentation - https://discord.js.org/
-- Guide for Building Discord Bot - https://discordjs.guide/  
+- Guide for Building Discord Bot - https://discordjs.guide/
+- Mongoose Official Documentation - https://mongoosejs.com/
+
   [Back To The Top](#react-counter)
