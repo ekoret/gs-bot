@@ -5,6 +5,7 @@ const {
 	createUser,
 } = require('../controllers/userController');
 const { SlashCommandBuilder } = require('../helpers/DiscordHelper');
+const EmbedHelper = require('../helpers/EmbedHelper');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -23,7 +24,8 @@ module.exports = {
 			await interaction.reply('New user created and rolled');
 		} else if (!userCanRoll(user.weekly)) {
 			// We need to check if the user is timed-out.
-			await interaction.reply('You cannot roll!');
+			const cannotRollEmbed = EmbedHelper.getTimedOutEmbed(user);
+			await interaction.reply({ embeds: [cannotRollEmbed] });
 		} else {
 			// There was a user found, so we can update the user.
 			const { updatedUser, reward } = await rewardUser(user);

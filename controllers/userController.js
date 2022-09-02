@@ -1,3 +1,4 @@
+const config = require('../config');
 const User = require('../models/user');
 
 const createUser = async (messageAuthorId, messageAuthorUsername) => {
@@ -48,10 +49,9 @@ const getRandomReward = () => {
 };
 
 const userCanRoll = (userWeekly) => {
-	const timeout = 604800000;
 	const now = Date.now();
 
-	if (timeout - (now - userWeekly) > 0) {
+	if (config.timeout - (now - userWeekly) > 0) {
 		return false;
 	}
 

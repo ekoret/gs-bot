@@ -10,6 +10,7 @@ const config = {
 	adminUser: process.env.ADMIN_USER,
 	customerSupportUser: process.env.CUSTOMER_SUPPORT_USER,
 	mongodbSrv: process.env.MONGO_SRV,
+	timeout: 604800000,
 };
 
 module.exports = config;
