@@ -20,12 +20,6 @@ function main() {
 	});
 
 	client.on('interactionCreate', async (interaction) => {
-		if (DiscordHelper.hasVerifiedRole(interaction.member.roles.cache)) {
-			console.log('has verified role');
-		} else {
-			console.log('does not have verified role');
-		}
-
 		if (interaction.user.bot || !interaction.isChatInputCommand()) return;
 
 		const command = interaction.client.commands.get(interaction.commandName);

@@ -62,12 +62,6 @@ class DiscordHelper {
 		}
 		return commandText;
 	}
-
-	static hasVerifiedRole(userCache) {
-		return userCache
-			.filter((role) => role.name !== '@everyone')
-			.some((role) => role.name === 'Admin' || 'Support' || 'Verified Member');
-	}
 }
 
 module.exports = {
