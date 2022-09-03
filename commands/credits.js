@@ -14,8 +14,8 @@ module.exports = {
 				.setDescription('Add or minus from users credits')
 				.setRequired(true)
 				.addChoices(
-					{ name: 'Add', value: 'add' },
-					{ name: 'Minus', value: 'minus' }
+					{ name: 'add', value: 'add' },
+					{ name: 'minus', value: 'minus' }
 				)
 		)
 		.addStringOption((option) =>
@@ -25,10 +25,7 @@ module.exports = {
 				.setRequired(true)
 		)
 		.addUserOption((option) =>
-			option
-				.setName('target')
-				.setDescription('The target user')
-				.setRequired(true)
+			option.setName('user').setDescription('The target user').setRequired(true)
 		)
 		.setDefaultMemberPermissions(
 			PermissionFlagsBits.KickMembers | PermissionFlagsBits.BanMembers
