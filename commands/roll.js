@@ -1,5 +1,5 @@
 const {
-	findUser,
+	findUserById,
 	rewardUser,
 	userCanRoll,
 	createUser,
@@ -14,7 +14,7 @@ module.exports = {
 	async execute(interaction) {
 		const id = interaction.user.id;
 
-		const user = await findUser(id);
+		const user = await findUserById(id);
 
 		if (user === null) {
 			// There was no user found, we'll need to create one, add a reward.

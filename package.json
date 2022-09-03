@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start:dev": "node deploy-commands && nodemon index.js",
+		"dcmd": "node deploy-commands",
 		"watch": "nodemon index.js"
 	},
 	"repository": {

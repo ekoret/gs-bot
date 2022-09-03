@@ -22,7 +22,7 @@ const createUser = async (messageAuthorId, messageAuthorUsername) => {
 	return { newUser, reward };
 };
 
-const findUser = async (id) => {
+const findUserById = async (id) => {
 	const user = await User.findById(id);
 
 	return user;
@@ -58,4 +58,34 @@ const userCanRoll = (userWeekly) => {
 	return true;
 };
 
-module.exports = { createUser, findUser, rewardUser, userCanRoll };
+const handleCredits = async (user, method, amount) => {
+	const foundUser = await findUserById(user.id);
+	if (foundUser !== null) {
+		let newTotal;
+		const previousTotalCredits = foundUser.totalCredits;
+
+		if (method === 'add') {
+			newTotal = parseInt(foundUser.totalCredits) + parseInt(amount);
+		} else if (method === 'minus') {
+			newTotal = parseInt(foundUser.totalCredits) - parseInt(amount);
+		}
+
+		const updatedUser = await User.findOneAndUpdate(
+			{ _id: user.id },
+			{ totalCredits: newTotal },
+			{ new: true }
+		);
+
+		return { updatedUser, previousTotalCredits };
+	} else {
+		return null;
+	}
+};
+
+module.exports = {
+	createUser,
+	findUserById,
+	rewardUser,
+	userCanRoll,
+	handleCredits,
+};

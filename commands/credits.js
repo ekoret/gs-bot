@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+const { handleCredits } = require('../controllers/userController');
 const {
 	SlashCommandBuilder,
 	PermissionFlagsBits,
@@ -31,14 +33,35 @@ module.exports = {
 			PermissionFlagsBits.KickMembers | PermissionFlagsBits.BanMembers
 		),
 	async execute(interaction) {
-		const embed = EmbedHelper.createEmbed(
-			'Credits Manager',
-			'Add or subtract credits from users.'
-		);
+		const amount = interaction.options.getString('amount');
+		const user = interaction.options.getUser('user');
+		const method = interaction.options.get('method').value;
 
-		await interaction.reply({
-			embeds: [embed],
-			ephemeral: true,
-		});
+		const data = await handleCredits(user, method, amount);
+
+		const methodText = method === 'add' ? 'added' : 'subtracted'; // needs better name
+		const toFrom = method === 'add' ? 'to' : 'from'; // needs better name
+
+		if (data !== null) {
+			const embed = EmbedHelper.createEmbed(
+				'Credits Manager',
+				`You've successfully \`${methodText} ${amount} credits\` ${toFrom} \`${user.username}\`.\n\n\`${user.username}\` went from \`${data.previousTotalCredits}\` to \`${data.updatedUser.totalCredits}.\``
+			);
+
+			await interaction.reply({
+				embeds: [embed],
+				ephemeral: true,
+			});
+		} else {
+			const embed = EmbedHelper.createEmbed(
+				'Credits Manager',
+				`Could not find user ${user.username} in database. Nothing was updated.`
+			);
+
+			await interaction.reply({
+				embeds: [embed],
+				ephemeral: true,
+			});
+		}
 	},
 };
