@@ -1,11 +1,17 @@
 # gs-bot
 
-> Version 0.1.4 now has all the embeds completed and basic functionality of the bot. I now need to add commands for admins to use to add and subtract from users total.
+> Version 0.1.5 now has everything but without the WooCommerce integration. The bot has been updated at this point to use slash commands, allows users to gain credits weekly that gets saved to a database, admin commands such as adding and removing credits from users. In the next versions, I will be working on adding some more admin commands such as setting the credits for a user and a command to view users data from the database.
 
 ### Table of Contents
 
 - [Description](#description)
+  - [Technologies](#technologies)
 - [How To Use](#how-to-use)
+  - [Installation](#installation)
+  - [Setting Up Authorization](#setting-up-authorization)
+  - [Enviroment Variables](#enviroment-variables)
+- [To Do](#to-do)
+- [Questions](#questions)
 - [References](#references)
 
 ---
@@ -14,50 +20,48 @@
 
 This is a custom Discord bot that uses the Discord.js library. The bot is a for-fun project that is on-going and a way to learn Nodejs, Discordjs, MongoDB, and more. I will be adding new things as time goes on and as my experience grows.
 
-#### Technologies
+### Technologies
 
 - discord.js `v14.3.0`
 - dotenv `v16.0.2`
 - discordjs/rest `v1.1.0`
 - eslint `v8.23.0`
 - nodemon `v2.0.19`
+- mongoose `v6.5.4`
 
-[Back To The Top](#react-counter)
+[Back To The Top](#gs-bot)
 
 ---
 
 ## How To Use
 
-### Installation
+### _Installation_
 
 Clone the git project. Command line into the folder and use `npm install` to install all the packages. Create a `.env` file and add the enviroment variables from the list below.  
 You can then use `node index.js` from the root of the project folder to start the bot. You can also use `npm run watch` to run the bot with nodemon. This method is useful for debugging and development.
 
-### Setting Up Authorization
+### _Setting Up Authorization_
 
 We don't want EVERYONE to be able to use the bot, only verified members. In order to achieve this, we can set the flag `Use Application Commands` in role settings to true for the roles that CAN use the bot.  
 For example, we would set the flag for the role `@everyone` to false, while role `Verified Member` and any other roles to true.
 
-### Enviroment Variables
+### _Enviroment Variables_
 
-- BOT_TOKEN
-- BOT_CLIENT_ID
-- GUILD_ID
-- COMPANY_NAME
-- ADMIN_USER
-- CUSTOMER_SUPPORT_USER
-- MONGO_SRV
+- Needs to be updated
 
-[Back To The Top](#react-counter)
+[Back To The Top](#gs-bot)
 
 ---
 
 ## To Do
 
 - REFACTOR!
-- Add content to readme
+- Change CommonJS requires to imports
+- Add useful admin commands
+- Add WooCommerce integration
+- Add for fun commands for users
 
-[Back To The Top](#react-counter)
+[Back To The Top](#gs-bot)
 
 ---
 
@@ -65,10 +69,8 @@ For example, we would set the flag for the role `@everyone` to false, while role
 
 - What is the difference between using `interaction.isCommand()` vs `interaction.isChatInputCommand()`?
 - Should controllers be classes?
-- Should I group all "helpers" into a folder?
-- Is it possible to turn NodeHelper into a class? If I can, is there any point?
 
-  [Back To The Top](#react-counter)
+[Back To The Top](#gs-bot)
 
 ---
 
@@ -78,4 +80,4 @@ For example, we would set the flag for the role `@everyone` to false, while role
 - Guide for Building Discord Bot - https://discordjs.guide/
 - Mongoose Official Documentation - https://mongoosejs.com/
 
-  [Back To The Top](#react-counter)
+[Back To The Top](#gs-bot)
