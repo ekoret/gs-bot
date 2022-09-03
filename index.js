@@ -7,6 +7,7 @@ const config = require('./config');
 const { DatabaseHelper } = require('./helpers/DatabaseHelper');
 
 function main() {
+	// Handling DB connection
 	DatabaseHelper.connectDb();
 
 	const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -14,12 +15,13 @@ function main() {
 	// Handling commands
 	DiscordHelper.readCommandFiles(client);
 
-	// When the client is ready, run this code (only once)
 	client.once('ready', () => {
 		console.log('Bot is ready!');
 	});
 
+	// This is listening for every interaction. In the future I should split up the interactions by event handling.
 	client.on('interactionCreate', async (interaction) => {
+		// Scoping the bot to only be used in specific channels
 		if (!DiscordHelper.isInteractionSafe(interaction)) {
 			await interaction.reply({
 				content: 'You cannot use the bot outside of the #bot-commands channel!',
@@ -43,7 +45,6 @@ function main() {
 		}
 	});
 
-	// Login to Discord with your client's token
 	client.login(config.token);
 }
 

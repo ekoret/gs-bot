@@ -1,6 +1,3 @@
-/*
-    To edit the list of commands when using the /command command, edit the commandsLegend.js file.
-*/
 const {
 	SlashCommandBuilder,
 	DiscordHelper,

@@ -39,10 +39,10 @@ module.exports = {
 
 		const data = await handleCredits(user, method, amount);
 
-		const methodText = method === 'add' ? 'added' : 'subtracted'; // needs better name
-		const toFrom = method === 'add' ? 'to' : 'from'; // needs better name
-
 		if (data !== null) {
+			const methodText = method === 'add' ? 'added' : 'subtracted'; // needs better name
+			const toFrom = method === 'add' ? 'to' : 'from'; // needs better name
+
 			const embed = EmbedHelper.createEmbed(
 				'Credits Manager',
 				`You've successfully \`${methodText} ${amount} credits\` ${toFrom} \`${user.username}\`.\n\n\`${user.username}\` went from \`${data.previousTotalCredits}\` to \`${data.updatedUser.totalCredits}.\``
