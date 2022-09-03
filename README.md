@@ -33,6 +33,11 @@ This is a custom Discord bot that uses the Discord.js library. The bot is a for-
 Clone the git project. Command line into the folder and use `npm install` to install all the packages. Create a `.env` file and add the enviroment variables from the list below.  
 You can then use `node index.js` from the root of the project folder to start the bot. You can also use `npm run watch` to run the bot with nodemon. This method is useful for debugging and development.
 
+### Setting Up Authorization
+
+We don't want EVERYONE to be able to use the bot, only verified members. In order to achieve this, we can set the flag `Use Application Commands` in role settings to true for the roles that CAN use the bot.  
+For example, we would set the flag for the role `@everyone` to false, while role `Verified Member` and any other roles to true.
+
 ### Enviroment Variables
 
 - BOT_TOKEN
