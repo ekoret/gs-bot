@@ -6,6 +6,7 @@ const {
 	Collection,
 	GatewayIntentBits,
 	Routes,
+	PermissionFlagsBits,
 } = require('discord.js');
 
 const { REST } = require('@discordjs/rest');
@@ -71,4 +72,5 @@ module.exports = {
 	Routes,
 	REST,
 	DiscordHelper,
+	PermissionFlagsBits,
 };
