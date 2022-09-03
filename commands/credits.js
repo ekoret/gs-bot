@@ -1,6 +1,5 @@
 const {
 	SlashCommandBuilder,
-	DiscordHelper,
 	PermissionFlagsBits,
 } = require('../helpers/DiscordHelper');
 const EmbedHelper = require('../helpers/EmbedHelper');
