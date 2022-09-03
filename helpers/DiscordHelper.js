@@ -10,6 +10,7 @@ const {
 } = require('discord.js');
 
 const { REST } = require('@discordjs/rest');
+const config = require('../config');
 
 class DiscordHelper {
 	static readCommandFiles(client) {
@@ -61,6 +62,19 @@ class DiscordHelper {
 			commandText += `\`${commandName} - ${commandDescription}\`\n`;
 		}
 		return commandText;
+	}
+
+	static isInteractionSafe(interaction) {
+		if (
+			!interaction.user.bot &&
+			interaction.isChatInputCommand() &&
+			(interaction.channelId === config.botChannel ||
+				interaction.channelId === config.adminChannel)
+		) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 

@@ -20,7 +20,13 @@ function main() {
 	});
 
 	client.on('interactionCreate', async (interaction) => {
-		if (interaction.user.bot || !interaction.isChatInputCommand()) return;
+		if (!DiscordHelper.isInteractionSafe(interaction)) {
+			await interaction.reply({
+				content: 'You cannot use the bot outside of the #bot-commands channel!',
+				ephemeral: true,
+			});
+			return;
+		}
 
 		const command = interaction.client.commands.get(interaction.commandName);
 

@@ -10,7 +10,13 @@ const config = {
 	adminUser: process.env.ADMIN_USER,
 	customerSupportUser: process.env.CUSTOMER_SUPPORT_USER,
 	mongodbSrv: process.env.MONGO_SRV,
-	timeout: 604800000,
+	timeout: devMode ? 10000 : 604800000,
+	botChannel: devMode
+		? process.env.BOT_COMMANDS_CHANNEL
+		: process.env.BOT_COMMANDS_CHANNEL_PROD,
+	adminChannel: devMode
+		? process.env.ADMIN_COMMANDS_CHANNEL
+		: process.env.ADMIN_COMMANDS_CHANNEL_PROD,
 };
 
 module.exports = config;
