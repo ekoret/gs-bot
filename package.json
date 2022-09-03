@@ -4,6 +4,7 @@
 	"description": "![GS BOT](link-to-img)",
 	"main": "index.js",
 	"scripts": {
+		"start:dev": "node deploy-commands.js && nodemon index.js",
 		"watch": "nodemon index.js"
 	},
 	"repository": {
