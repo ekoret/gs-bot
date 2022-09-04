@@ -71,12 +71,65 @@ class EmbedHelper {
 		let minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
 		let hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
 
-		days = days < 10 ? '0' + days : days;
-		hours = hours < 10 ? '0' + hours : hours;
-		minutes = minutes < 10 ? '0' + minutes : minutes;
-		seconds = seconds < 10 ? '0' + seconds : seconds;
+		days = days < 10 && days > 0 ? '0' + days : days;
+		hours = hours < 10 && hours > 0 ? '0' + hours : hours;
+		minutes = minutes < 10 && minutes > 0 ? '0' + minutes : minutes;
+		seconds = seconds < 10 && seconds > 0 ? '0' + seconds : seconds;
 
-		return `\`${days}d ${hours}h ${minutes}m ${seconds}s\``;
+		if (minutes && seconds < 0) {
+			console.log({ days, hours, minutes, seconds });
+			return '`Not Timed Out`';
+		} else {
+			console.log({ days, hours, minutes, seconds });
+			return `\`${days}d ${hours}h ${minutes}m ${seconds}s\``;
+		}
+	}
+
+	static getUserInfoEmbed(user) {
+		const embed = new EmbedBuilder()
+			.setColor('#046738')
+			.setTitle(`Information on ${user.username}`)
+			.setDescription(
+				`This is the information in the database for ${user.username}`
+			)
+			.addFields(
+				{
+					name: 'ID',
+					value: `\`${user._id}\``,
+				},
+				{
+					name: 'Username',
+					value: `\`${user.username}\``,
+				},
+				{
+					name: 'Timeout Length',
+					value: this.getTimeoutLength(user.weekly),
+				},
+				{
+					name: 'Total Credits',
+					value: `\`${user.totalCredits}\``,
+				},
+				{
+					name: 'Last Rolled',
+					value: `\`${this.getFormattedDate(user.updatedAt)}\``,
+				},
+				{
+					name: 'First Roll',
+					value: `\`${this.getFormattedDate(user.createdAt)}\``,
+				}
+			)
+			.setTimestamp()
+			.setFooter({
+				text: `${config.companyName} | Any issues with the bot please contact ${config.adminUser}`,
+			});
+		return embed;
+	}
+
+	static getFormattedDate(date) {
+		return new Intl.DateTimeFormat('en-US', {
+			dateStyle: 'full',
+			timeStyle: 'long',
+		}).format(date);
 	}
 }
 
