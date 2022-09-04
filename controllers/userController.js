@@ -68,6 +68,8 @@ const handleCredits = async (user, method, amount) => {
 			newTotal = parseInt(foundUser.totalCredits) + parseInt(amount);
 		} else if (method === 'minus') {
 			newTotal = parseInt(foundUser.totalCredits) - parseInt(amount);
+		} else if (method === 'set') {
+			newTotal = parseInt(amount);
 		}
 
 		const updatedUser = await User.findOneAndUpdate(

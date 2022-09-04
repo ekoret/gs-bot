@@ -13,11 +13,12 @@ module.exports = {
 		.addStringOption((option) =>
 			option
 				.setName('method')
-				.setDescription('Add or minus from users credits')
+				.setDescription('Add, minus, or set credits for a user')
 				.setRequired(true)
 				.addChoices(
 					{ name: 'add', value: 'add' },
-					{ name: 'minus', value: 'minus' }
+					{ name: 'minus', value: 'minus' },
+					{ name: 'set', value: 'set' }
 				)
 		)
 		.addStringOption((option) =>
@@ -40,12 +41,22 @@ module.exports = {
 		const data = await handleCredits(user, method, amount);
 
 		if (data !== null) {
-			const methodText = method === 'add' ? 'added' : 'subtracted'; // needs better name
-			const toFrom = method === 'add' ? 'to' : 'from'; // needs better name
+			const methodText = (methodType) => {
+				if (methodType === 'set') {
+					return ['set', 'for'];
+				} else if (methodType === 'add') {
+					return ['added', 'to'];
+				} else if (methodType === 'minus') {
+					return ['subtracted', 'from'];
+				}
+			};
+
+			const [action, text] = methodText(method);
+			const { updatedUser, previousTotalCredits } = data;
 
 			const embed = EmbedHelper.createEmbed(
 				'Credits Manager',
-				`You've successfully \`${methodText} ${amount} credits\` ${toFrom} \`${user.username}\`.\n\n\`${user.username}\` went from \`${data.previousTotalCredits}\` to \`${data.updatedUser.totalCredits}.\``
+				`You've successfully \`${action} ${amount} credits\` ${text} \`${updatedUser.username}\`.\n\n\`${updatedUser.username}\` went from \`${previousTotalCredits}\` to \`${updatedUser.totalCredits}.\``
 			);
 
 			await interaction.reply({
