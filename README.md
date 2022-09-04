@@ -2,6 +2,8 @@
 
 > Version 0.1.5 now has everything but without the WooCommerce integration. The bot has been updated at this point to use slash commands, allows users to gain credits weekly that gets saved to a database, admin commands such as adding and removing credits from users. In the next versions, I will be working on adding some more admin commands such as setting the credits for a user and a command to view users data from the database.
 
+> A change is going to be done in this branch. I will be removing all CommonJS requires and replacing them with modern import and export syntax.
+
 ### Table of Contents
 
 - [Description](#description)
