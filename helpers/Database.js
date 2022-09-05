@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import { config } from './DiscordHelper.js';
+import { config } from './Discord.js';
 
-export default class DatabaseHelper {
+export default class Database {
 	static connectDb() {
 		try {
 			mongoose.connect(config.mongodbSrv);

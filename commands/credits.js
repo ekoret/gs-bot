@@ -1,10 +1,9 @@
-/* eslint-disable indent */
 import { handleCredits } from '../controllers/userController.js';
 import {
 	SlashCommandBuilder,
 	PermissionFlagsBits,
-} from '../helpers/DiscordHelper.js';
-import Embed from '../helpers/Embed.js';
+	Embed,
+} from '../helpers/Discord.js';
 
 export default {
 	data: new SlashCommandBuilder()

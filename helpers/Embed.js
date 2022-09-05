@@ -1,5 +1,4 @@
-import { config } from './DiscordHelper.js';
-import { EmbedBuilder } from 'discord.js';
+import { config, EmbedBuilder } from './Discord.js';
 
 export default class Embed {
 	constructor() {

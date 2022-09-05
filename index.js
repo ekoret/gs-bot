@@ -1,17 +1,17 @@
-import DiscordHelper, {
+import Discord, {
 	Client,
 	GatewayIntentBits,
 	config,
-} from './helpers/DiscordHelper.js';
-import DatabaseHelper from './helpers/DatabaseHelper.js';
+} from './helpers/Discord.js';
+import Database from './helpers/Database.js';
 const main = async () => {
 	// Handling DB connection
-	DatabaseHelper.connectDb();
+	Database.connectDb();
 
 	const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 	// Handling commands
-	await DiscordHelper.readCommandFiles(client);
+	await Discord.readCommandFiles(client);
 
 	client.once('ready', () => {
 		console.log('Bot is ready!');
@@ -20,7 +20,7 @@ const main = async () => {
 	// This is listening for every interaction. In the future I should split up the interactions by event handling.
 	client.on('interactionCreate', async (interaction) => {
 		// Scoping the bot to only be used in specific channels
-		if (!DiscordHelper.isInteractionSafe(interaction)) {
+		if (!Discord.isInteractionSafe(interaction)) {
 			await interaction.reply({
 				content: 'You cannot use the bot outside of the #bot-commands channel!',
 				ephemeral: true,

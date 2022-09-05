@@ -1,4 +1,4 @@
-import { fs, path, fileURLToPath } from '../helpers/NodeHelper.js';
+import { fs, path, fileURLToPath } from './Node.js';
 
 import {
 	SlashCommandBuilder,
@@ -7,15 +7,15 @@ import {
 	GatewayIntentBits,
 	Routes,
 	PermissionFlagsBits,
+	EmbedBuilder,
 } from 'discord.js';
 
 import { REST } from '@discordjs/rest';
 import config, { wcConfig } from '../config.js';
 
-import {
-	commands as commandsTable,
-	rewards as rewardsTable,
-} from '../helpers/tables.js';
+import Table from './Table.js';
+
+import Embed from './Embed.js';
 
 export {
 	REST,
@@ -27,9 +27,11 @@ export {
 	PermissionFlagsBits,
 	config,
 	wcConfig,
+	EmbedBuilder,
+	Embed,
 };
 
-export default class DiscordHelper {
+export default class Discord {
 	static async readCommandFiles(client) {
 		const __filename = fileURLToPath(import.meta.url);
 		const __dirname = path.dirname(__filename);
@@ -67,9 +69,9 @@ export default class DiscordHelper {
 	static async getTableText(type) {
 		let table;
 		if (type === 'commands') {
-			table = commandsTable;
+			table = Table.getCommands();
 		} else if (type === 'rewards') {
-			table = rewardsTable;
+			table = Table.getRewards();
 		}
 
 		let commandText = '';

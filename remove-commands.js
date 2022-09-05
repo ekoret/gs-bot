@@ -1,4 +1,4 @@
-import { Routes, REST, config } from './helpers/DiscordHelper.js';
+import { Routes, REST, config } from './helpers/Discord.js';
 
 const CLIENT_ID = config.client;
 const TOKEN = config.token;

@@ -4,8 +4,7 @@ import {
 	userCanRoll,
 	createUser,
 } from '../controllers/userController.js';
-import { SlashCommandBuilder } from '../helpers/DiscordHelper.js';
-import Embed from '../helpers/Embed.js';
+import { SlashCommandBuilder, Embed } from '../helpers/Discord.js';
 
 export default {
 	data: new SlashCommandBuilder()

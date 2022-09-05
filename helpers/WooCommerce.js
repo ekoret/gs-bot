@@ -1,8 +1,8 @@
 import pkg from '@woocommerce/woocommerce-rest-api';
 const WooCommerceRestApi = pkg.default;
-import { wcConfig } from './DiscordHelper.js';
+import { wcConfig } from './Discord.js';
 
-export default class WooCommerceHelper {
+export default class WooCommerce {
 	static async getOrderStatus(orderNumber) {
 		const api = new WooCommerceRestApi(wcConfig);
 

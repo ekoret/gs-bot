@@ -1,4 +1,4 @@
-import { mongoose } from '../helpers/DatabaseHelper.js';
+import { mongoose } from '../helpers/Database.js';
 
 const userSchema = new mongoose.Schema(
 	{

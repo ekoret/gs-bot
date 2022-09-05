@@ -1,6 +1,5 @@
-import { SlashCommandBuilder, config } from '../helpers/DiscordHelper.js';
-import WooCommerceHelper from '../helpers/WooCommerceHelper.js';
-import Embed from '../helpers/Embed.js';
+import { SlashCommandBuilder, config, Embed } from '../helpers/Discord.js';
+import WooCommerce from '../helpers/WooCommerce.js';
 
 export default {
 	data: new SlashCommandBuilder()
@@ -22,7 +21,7 @@ export default {
 		});
 
 		// Make the API call here
-		const orderDetails = await WooCommerceHelper.getOrderStatus(orderNumber); // returns an object with order data
+		const orderDetails = await WooCommerce.getOrderStatus(orderNumber); // returns an object with order data
 
 		if (orderDetails !== null && orderDetails !== undefined) {
 			const orderDetailsEmbed = Embed.getOrderDetailsEmbed(orderDetails);

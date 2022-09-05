@@ -1,15 +1,11 @@
-import DiscordHelper, {
-	Routes,
-	REST,
-	config,
-} from './helpers/DiscordHelper.js';
+import Discord, { Routes, REST, config } from './helpers/Discord.js';
 
 const CLIENT_ID = config.client;
 const TOKEN = config.token;
 const GUILD_ID = config.guildId;
 
 const main = async () => {
-	const commands = await DiscordHelper.readCommandFilesDeploy();
+	const commands = await Discord.readCommandFilesDeploy();
 
 	const rest = new REST({ version: '10' }).setToken(TOKEN);
 

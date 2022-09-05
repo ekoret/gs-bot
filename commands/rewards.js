@@ -1,15 +1,15 @@
-import DiscordHelper, {
+import Discord, {
 	config,
 	SlashCommandBuilder,
-} from '../helpers/DiscordHelper.js';
-import Embed from '../helpers/Embed.js';
+	Embed,
+} from '../helpers/Discord.js';
 
 export default {
 	data: new SlashCommandBuilder()
 		.setName('rewards')
 		.setDescription('View the redemption amount for credits to points.'),
 	async execute(interaction) {
-		const commandText = await DiscordHelper.getTableText('rewards');
+		const commandText = await Discord.getTableText('rewards');
 
 		const embed = new Embed().createEmbed('Rewards', ' ');
 

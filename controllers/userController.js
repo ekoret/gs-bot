@@ -1,4 +1,4 @@
-import { config } from '../helpers/DiscordHelper.js';
+import { config } from '../helpers/Discord.js';
 import User from '../models/user.js';
 
 const createUser = async (messageAuthorId, messageAuthorUsername) => {
