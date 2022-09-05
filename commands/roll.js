@@ -1,8 +1,8 @@
+import User from '../controllers/User.js';
 import {
 	findUserById,
 	rewardUser,
 	userCanRoll,
-	createUser,
 } from '../controllers/userController.js';
 import { SlashCommandBuilder, Embed } from '../helpers/Discord.js';
 
@@ -14,13 +14,12 @@ export default {
 		const user = await findUserById(interaction.user.id);
 
 		if (user === null) {
-			// There was no user found, we'll need to create one, add a reward.
-			const { newUser, reward } = await createUser(
-				interaction.user.id,
-				interaction.user.username
-			);
+			const newUser = new User(interaction.user.id, interaction.user.username);
 
-			const newUserEmbed = Embed.getUserRolledEmbed(newUser, reward);
+			const newUserEmbed = Embed.getUserRolledEmbed(
+				newUser,
+				newUser.totalCredits
+			);
 
 			await interaction.reply({ embeds: [newUserEmbed] });
 		} else if (!userCanRoll(user.weekly)) {

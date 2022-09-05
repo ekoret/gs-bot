@@ -1,7 +1,7 @@
 import { config } from '../helpers/Discord.js';
 import User from '../models/user.js';
 
-const createUser = async (messageAuthorId, messageAuthorUsername) => {
+const createUser = (messageAuthorId, messageAuthorUsername) => {
 	const reward = getRandomReward();
 
 	const newUser = new User({
