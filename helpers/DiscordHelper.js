@@ -12,6 +12,11 @@ import {
 import { REST } from '@discordjs/rest';
 import config from '../config.js';
 
+import {
+	commands as commandsTable,
+	rewards as rewardsTable,
+} from '../helpers/tables.js';
+
 export default class DiscordHelper {
 	static async readCommandFiles(client) {
 		const __filename = fileURLToPath(import.meta.url);
@@ -50,11 +55,9 @@ export default class DiscordHelper {
 	static async getTableText(type) {
 		let table;
 		if (type === 'commands') {
-			const { commands } = await import('../tables.js');
-			table = commands;
+			table = commandsTable;
 		} else if (type === 'rewards') {
-			const { rewards } = await import('../tables.js');
-			table = rewards;
+			table = rewardsTable;
 		}
 
 		let commandText = '';
