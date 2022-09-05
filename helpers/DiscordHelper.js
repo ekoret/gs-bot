@@ -10,12 +10,24 @@ import {
 } from 'discord.js';
 
 import { REST } from '@discordjs/rest';
-import config from '../config.js';
+import config, { wcConfig } from '../config.js';
 
 import {
 	commands as commandsTable,
 	rewards as rewardsTable,
 } from '../helpers/tables.js';
+
+export {
+	REST,
+	SlashCommandBuilder,
+	Client,
+	Collection,
+	GatewayIntentBits,
+	Routes,
+	PermissionFlagsBits,
+	config,
+	wcConfig,
+};
 
 export default class DiscordHelper {
 	static async readCommandFiles(client) {
@@ -86,14 +98,3 @@ export default class DiscordHelper {
 		}
 	}
 }
-
-export {
-	REST,
-	SlashCommandBuilder,
-	Client,
-	Collection,
-	GatewayIntentBits,
-	Routes,
-	PermissionFlagsBits,
-	config,
-};
