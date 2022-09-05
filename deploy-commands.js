@@ -23,18 +23,6 @@ const main = async () => {
 			)
 		)
 		.catch(console.error);
-
-	// Removing Guild Based Commands
-	// rest
-	// 	.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), { body: [] })
-	// 	.then(() => console.log('Successfully deleted all guild commands.'))
-	// 	.catch(console.error);
-
-	// Removing Global Based Commands
-	// rest
-	// 	.put(Routes.applicationCommands(CLIENT_ID), { body: [] })
-	// 	.then(() => console.log('Successfully deleted all application commands.'))
-	// 	.catch(console.error);
 };
 
 main();

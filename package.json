@@ -5,9 +5,9 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"start:dev": "node deploy-commands && nodemon index.js",
-		"dcmd": "node deploy-commands",
-		"watch": "nodemon index.js"
+		"start:dev": "node deploy-commands.js && nodemon index.js",
+		"dev:dpycmd": "node deploy-commands.js",
+		"dev:dltcmd": "node remove-commands.js"
 	},
 	"repository": {
 		"type": "git",
