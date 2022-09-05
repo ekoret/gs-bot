@@ -1,19 +1,17 @@
-const {
+import DiscordHelper, {
 	Client,
-	DiscordHelper,
 	GatewayIntentBits,
-} = require('./helpers/DiscordHelper');
-const config = require('./config');
-const { DatabaseHelper } = require('./helpers/DatabaseHelper');
-
-function main() {
+	config,
+} from './helpers/DiscordHelper.js';
+import DatabaseHelper from './helpers/DatabaseHelper.js';
+const main = async () => {
 	// Handling DB connection
 	DatabaseHelper.connectDb();
 
 	const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 	// Handling commands
-	DiscordHelper.readCommandFiles(client);
+	await DiscordHelper.readCommandFiles(client);
 
 	client.once('ready', () => {
 		console.log('Bot is ready!');
@@ -31,7 +29,6 @@ function main() {
 		}
 
 		const command = interaction.client.commands.get(interaction.commandName);
-
 		if (!command) return;
 
 		try {
@@ -46,6 +43,6 @@ function main() {
 	});
 
 	client.login(config.token);
-}
+};
 
 main();

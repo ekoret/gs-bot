@@ -1,12 +1,15 @@
-const config = require('./config');
-const { Routes, REST, DiscordHelper } = require('./helpers/DiscordHelper');
+import DiscordHelper, {
+	Routes,
+	REST,
+	config,
+} from './helpers/DiscordHelper.js';
 
 const CLIENT_ID = config.client;
 const TOKEN = config.token;
 const GUILD_ID = config.guildId;
 
-function main() {
-	const commands = DiscordHelper.readCommandFilesDeploy();
+const main = async () => {
+	const commands = await DiscordHelper.readCommandFilesDeploy();
 
 	const rest = new REST({ version: '10' }).setToken(TOKEN);
 
@@ -32,6 +35,6 @@ function main() {
 	// 	.put(Routes.applicationCommands(CLIENT_ID), { body: [] })
 	// 	.then(() => console.log('Successfully deleted all application commands.'))
 	// 	.catch(console.error);
-}
+};
 
 main();

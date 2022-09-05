@@ -1,7 +1,7 @@
-const config = require('../config');
-const { EmbedBuilder } = require('discord.js');
+import { config } from '../helpers/DiscordHelper.js';
+import { EmbedBuilder } from 'discord.js';
 
-class EmbedHelper {
+export default class EmbedHelper {
 	static createEmbed(title, description) {
 		const embed = new EmbedBuilder()
 			.setColor('#046738')
@@ -77,10 +77,8 @@ class EmbedHelper {
 		seconds = seconds < 10 && seconds > 0 ? '0' + seconds : seconds;
 
 		if (minutes && seconds < 0) {
-			console.log({ days, hours, minutes, seconds });
 			return '`Not Timed Out`';
 		} else {
-			console.log({ days, hours, minutes, seconds });
 			return `\`${days}d ${hours}h ${minutes}m ${seconds}s\``;
 		}
 	}
@@ -132,5 +130,3 @@ class EmbedHelper {
 		}).format(date);
 	}
 }
-
-module.exports = EmbedHelper;

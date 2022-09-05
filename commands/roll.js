@@ -1,13 +1,13 @@
-const {
+import {
 	findUserById,
 	rewardUser,
 	userCanRoll,
 	createUser,
-} = require('../controllers/userController');
-const { SlashCommandBuilder } = require('../helpers/DiscordHelper');
-const EmbedHelper = require('../helpers/EmbedHelper');
+} from '../controllers/userController.js';
+import { SlashCommandBuilder } from '../helpers/DiscordHelper.js';
+import EmbedHelper from '../helpers/EmbedHelper.js';
 
-module.exports = {
+export default {
 	data: new SlashCommandBuilder()
 		.setName('roll')
 		.setDescription('Get a chance to receive free credits!'),

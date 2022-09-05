@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "![GS BOT](link-to-img)",
 	"main": "index.js",
+	"type": "module",
 	"scripts": {
 		"start:dev": "node deploy-commands && nodemon index.js",
 		"dcmd": "node deploy-commands",

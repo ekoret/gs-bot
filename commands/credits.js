@@ -1,12 +1,12 @@
 /* eslint-disable indent */
-const { handleCredits } = require('../controllers/userController');
-const {
+import { handleCredits } from '../controllers/userController.js';
+import {
 	SlashCommandBuilder,
 	PermissionFlagsBits,
-} = require('../helpers/DiscordHelper');
-const EmbedHelper = require('../helpers/EmbedHelper');
+} from '../helpers/DiscordHelper.js';
+import EmbedHelper from '../helpers/EmbedHelper.js';
 
-module.exports = {
+export default {
 	data: new SlashCommandBuilder()
 		.setName('credits')
 		.setDescription('Add or minus credits from users. Admins only.')

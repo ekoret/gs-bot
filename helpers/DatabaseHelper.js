@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const config = require('../config');
+import mongoose from 'mongoose';
+import { config } from './DiscordHelper.js';
 
-class DatabaseHelper {
+export default class DatabaseHelper {
 	static connectDb() {
 		try {
 			mongoose.connect(config.mongodbSrv);
@@ -12,4 +12,4 @@ class DatabaseHelper {
 	}
 }
 
-module.exports = { DatabaseHelper, mongoose };
+export { mongoose };

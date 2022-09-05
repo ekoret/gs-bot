@@ -1,5 +1,5 @@
-const config = require('../config');
-const User = require('../models/user');
+import { config } from '../helpers/DiscordHelper.js';
+import User from '../models/user.js';
 
 const createUser = async (messageAuthorId, messageAuthorUsername) => {
 	const reward = getRandomReward();
@@ -83,11 +83,4 @@ const handleCredits = async (user, method, amount) => {
 		return null;
 	}
 };
-
-module.exports = {
-	createUser,
-	findUserById,
-	rewardUser,
-	userCanRoll,
-	handleCredits,
-};
+export { findUserById, createUser, rewardUser, userCanRoll, handleCredits };

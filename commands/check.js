@@ -1,12 +1,13 @@
 /* eslint-disable indent */
-const { findUserById } = require('../controllers/userController');
-const {
+import { findUserById } from '../controllers/userController.js';
+import {
 	SlashCommandBuilder,
 	PermissionFlagsBits,
-} = require('../helpers/DiscordHelper');
-const EmbedHelper = require('../helpers/EmbedHelper');
+} from '../helpers/DiscordHelper.js';
 
-module.exports = {
+import EmbedHelper from '../helpers/EmbedHelper.js';
+
+export default {
 	data: new SlashCommandBuilder()
 		.setName('check')
 		.setDescription(

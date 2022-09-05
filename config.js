@@ -1,4 +1,5 @@
-require('dotenv').config();
+import * as dotenv from 'dotenv'; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+dotenv.config();
 
 const devMode = true;
 
@@ -10,7 +11,7 @@ const config = {
 	adminUser: process.env.ADMIN_USER,
 	customerSupportUser: process.env.CUSTOMER_SUPPORT_USER,
 	mongodbSrv: process.env.MONGO_SRV,
-	timeout: devMode ? 30000 : 604800000,
+	timeout: devMode ? 60000 : 604800000,
 	botChannel: devMode
 		? process.env.BOT_COMMANDS_CHANNEL
 		: process.env.BOT_COMMANDS_CHANNEL_PROD,
@@ -19,4 +20,4 @@ const config = {
 		: process.env.ADMIN_COMMANDS_CHANNEL_PROD,
 };
 
-module.exports = config;
+export default config;

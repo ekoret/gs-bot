@@ -1,7 +1,5 @@
-const fs = require('node:fs');
-const path = require('node:path');
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'url';
 
-module.exports = {
-	fs,
-	path,
-};
+export { path, fs, fileURLToPath };
