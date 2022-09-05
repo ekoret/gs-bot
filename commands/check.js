@@ -5,7 +5,7 @@ import {
 	PermissionFlagsBits,
 } from '../helpers/DiscordHelper.js';
 
-import EmbedHelper from '../helpers/EmbedHelper.js';
+import Embed from '../helpers/Embed.js';
 
 export default {
 	data: new SlashCommandBuilder()
@@ -25,13 +25,14 @@ export default {
 		const user = await findUserById(userInteraction.id);
 
 		if (user !== null) {
-			const userInfoEmbed = EmbedHelper.getUserInfoEmbed(user);
+			const userInfoEmbed = Embed.getUserInfoEmbed(user);
 			interaction.reply({ embeds: [userInfoEmbed] });
 		} else {
-			const errorEmbed = EmbedHelper.createEmbed(
-				'Could Not Find User',
+			const errorEmbed = new Embed().createEmbed(
+				'Could Not find User',
 				`Could not find any data for the user ${userInteraction.username}`
 			);
+
 			interaction.reply({ embeds: [errorEmbed] });
 		}
 	},

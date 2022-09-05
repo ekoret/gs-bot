@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, config } from '../helpers/DiscordHelper.js';
 import WooCommerceHelper from '../helpers/WooCommerceHelper.js';
-import EmbedHelper from '../helpers/EmbedHelper.js';
+import Embed from '../helpers/Embed.js';
 
 export default {
 	data: new SlashCommandBuilder()
@@ -25,16 +25,18 @@ export default {
 		const orderDetails = await WooCommerceHelper.getOrderStatus(orderNumber); // returns an object with order data
 
 		if (orderDetails !== null && orderDetails !== undefined) {
-			const orderDetailsEmbed = EmbedHelper.getOrderDetailsEmbed(orderDetails);
+			const orderDetailsEmbed = Embed.getOrderDetailsEmbed(orderDetails);
+
 			await interaction.followUp({
 				embeds: [orderDetailsEmbed],
 				ephemeral: true,
 			});
 		} else {
-			const orderStatusErrorEmbed = EmbedHelper.createEmbed(
+			const orderStatusErrorEmbed = new Embed().createEmbed(
 				'Could not get your order status!',
 				`There was an error attempting to retrieve your order status with the order number \`${orderNumber}\`.\n\nPlease ensure that you are entering in the correct order number.\n\nIf there are any further issues, please contact ${config.adminUser}`
 			);
+
 			await interaction.followUp({
 				embeds: [orderStatusErrorEmbed],
 				ephemeral: true,

@@ -4,7 +4,7 @@ import {
 	SlashCommandBuilder,
 	PermissionFlagsBits,
 } from '../helpers/DiscordHelper.js';
-import EmbedHelper from '../helpers/EmbedHelper.js';
+import Embed from '../helpers/Embed.js';
 
 export default {
 	data: new SlashCommandBuilder()
@@ -53,18 +53,16 @@ export default {
 
 			const [action, text] = methodText(method);
 			const { updatedUser, previousTotalCredits } = data;
+			const embedText = `You've successfully \`${action} ${amount} credits\` ${text} \`${updatedUser.username}\`.\n\n\`${updatedUser.username}\` went from \`${previousTotalCredits}\` to \`${updatedUser.totalCredits}.\``;
 
-			const embed = EmbedHelper.createEmbed(
-				'Credits Manager',
-				`You've successfully \`${action} ${amount} credits\` ${text} \`${updatedUser.username}\`.\n\n\`${updatedUser.username}\` went from \`${previousTotalCredits}\` to \`${updatedUser.totalCredits}.\``
-			);
+			const embed = new Embed().createEmbed('Credits Manager', embedText);
 
 			await interaction.reply({
 				embeds: [embed],
 				ephemeral: true,
 			});
 		} else {
-			const embed = EmbedHelper.createEmbed(
+			const embed = new Embed().createEmbed(
 				'Credits Manager',
 				`Could not find user ${user.username} in database. Nothing was updated.`
 			);

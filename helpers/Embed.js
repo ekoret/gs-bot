@@ -1,15 +1,20 @@
-import { config } from '../helpers/DiscordHelper.js';
+import { config } from './DiscordHelper.js';
 import { EmbedBuilder } from 'discord.js';
 
-export default class EmbedHelper {
-	static createEmbed(title, description) {
+export default class Embed {
+	constructor() {
+		this.color = '#046738';
+		this.footer = `${config.companyName} | Any issues with the bot please contact ${config.adminUser}`;
+	}
+
+	createEmbed(title, description) {
 		const embed = new EmbedBuilder()
-			.setColor('#046738')
+			.setColor(this.color)
 			.setTitle(title)
 			.setDescription(description)
 			.setTimestamp()
 			.setFooter({
-				text: `${config.companyName} | Any issues with the bot please contact ${config.adminUser}`,
+				text: this.footer,
 			});
 
 		return embed;

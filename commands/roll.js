@@ -5,7 +5,7 @@ import {
 	createUser,
 } from '../controllers/userController.js';
 import { SlashCommandBuilder } from '../helpers/DiscordHelper.js';
-import EmbedHelper from '../helpers/EmbedHelper.js';
+import Embed from '../helpers/Embed.js';
 
 export default {
 	data: new SlashCommandBuilder()
@@ -21,19 +21,19 @@ export default {
 				interaction.user.username
 			);
 
-			const newUserEmbed = EmbedHelper.getUserRolledEmbed(newUser, reward);
+			const newUserEmbed = Embed.getUserRolledEmbed(newUser, reward);
 
 			await interaction.reply({ embeds: [newUserEmbed] });
 		} else if (!userCanRoll(user.weekly)) {
 			// We need to check if the user is timed-out.
-			const cannotRollEmbed = EmbedHelper.getTimedOutEmbed(user);
+			const cannotRollEmbed = Embed.getTimedOutEmbed(user);
 
 			await interaction.reply({ embeds: [cannotRollEmbed] });
 		} else {
 			// There was a user found, so we can update the user.
 			const { updatedUser, reward } = await rewardUser(user);
 
-			const updatedUserRollEmbed = EmbedHelper.getUserRolledEmbed(
+			const updatedUserRollEmbed = Embed.getUserRolledEmbed(
 				updatedUser,
 				reward
 			);
