@@ -1,8 +1,6 @@
 # gs-bot
 
-> Version 0.1.5 now has everything but without the WooCommerce integration. The bot has been updated at this point to use slash commands, allows users to gain credits weekly that gets saved to a database, admin commands such as adding and removing credits from users. In the next versions, I will be working on adding some more admin commands such as setting the credits for a user and a command to view users data from the database.
-
-> A change is going to be done in this branch. I will be removing all CommonJS requires and replacing them with modern import and export syntax.
+> Version 0.1.6 has all of the useful admin commands as well as commands for users. The project has been converted from CommonJS requires to ES6 import and exports. The reason for changing was to handle modules in a more modern way. This version will now focus on styling embeds, wording, typos, and any refactoring that needs to be done.
 
 ### Table of Contents
 
@@ -58,10 +56,13 @@ For example, we would set the flag for the role `@everyone` to false, while role
 ## To Do
 
 - REFACTOR!
-- Change CommonJS requires to imports
-- Add useful admin commands
+- ~~Change CommonJS requires to imports~~
+- ~~Add useful admin commands~~
+  - Added commands to set and check user data in the database.
 - Add WooCommerce integration
 - Add for fun commands for users
+  - Add dad jokes?
+  - Find some free APIs
 
 [Back To The Top](#gs-bot)
 
