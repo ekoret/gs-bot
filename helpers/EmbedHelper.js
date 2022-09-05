@@ -123,6 +123,35 @@ export default class EmbedHelper {
 		return embed;
 	}
 
+	static getOrderDetailsEmbed({ id, status, date_created, date_modified }) {
+		const embed = new EmbedBuilder()
+			.setColor('#046738')
+			.setTitle(`Order status for order ${id}`)
+			.addFields(
+				{
+					name: 'Order ID',
+					value: `\`${id}\``,
+				},
+				{
+					name: 'Status',
+					value: `\`${status}\``,
+				},
+				{
+					name: 'Date Created',
+					value: `\`${this.getFormattedDate(new Date(date_created))}\``,
+				},
+				{
+					name: 'Last Modified',
+					value: `\`${this.getFormattedDate(new Date(date_modified))}\``,
+				}
+			)
+			.setTimestamp()
+			.setFooter({
+				text: `${config.companyName} | Any issues with the bot please contact ${config.adminUser}`,
+			});
+		return embed;
+	}
+
 	static getFormattedDate(date) {
 		return new Intl.DateTimeFormat('en-US', {
 			dateStyle: 'full',

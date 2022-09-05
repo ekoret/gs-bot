@@ -20,4 +20,11 @@ const config = {
 		: process.env.ADMIN_COMMANDS_CHANNEL_PROD,
 };
 
+export const wcConfig = {
+	url: devMode ? process.env.SITE_URL_DEV : process.env.SITE_URL_PROD,
+	consumerKey: devMode ? process.env.CK_DEV : process.env.CK_PROD,
+	consumerSecret: devMode ? process.env.CS_DEV : process.env.CS_PROD,
+	version: devMode ? process.env.VERSION_DEV : process.env.VERSION_PROD,
+};
+
 export default config;

@@ -1,4 +1,6 @@
 import { SlashCommandBuilder, config } from '../helpers/DiscordHelper.js';
+import WooCommerceHelper from '../helpers/WooCommerceHelper.js';
+import EmbedHelper from '../helpers/EmbedHelper.js';
 
 export default {
 	data: new SlashCommandBuilder()
@@ -9,20 +11,10 @@ export default {
 				.setName('order-number')
 				.setDescription('The order number you want to check')
 				.setRequired(true)
-		)
-		.addStringOption((option) =>
-			option
-				.setName('unique-id')
-				.setDescription(
-					`Your ${config.companyName} unique ID. You can find this on your account page`
-				)
-				.setRequired(true)
 		),
+
 	async execute(interaction) {
 		const orderNumber = interaction.options.getString('order-number');
-		const uniqueId = interaction.options.getString('unique-id');
-
-		console.log({ orderNumber, uniqueId });
 
 		await interaction.reply({
 			content: 'Please give me a few moments to find your order!',
@@ -30,7 +22,23 @@ export default {
 		});
 
 		// Make the API call here
+		const orderDetails = await WooCommerceHelper.getOrderStatus(orderNumber); // returns an object with order data
 
-		await interaction.followUp({ content: 'Hello!', ephemeral: true });
+		if (orderDetails !== null && orderDetails !== undefined) {
+			const orderDetailsEmbed = EmbedHelper.getOrderDetailsEmbed(orderDetails);
+			await interaction.followUp({
+				embeds: [orderDetailsEmbed],
+				ephemeral: true,
+			});
+		} else {
+			const orderStatusErrorEmbed = EmbedHelper.createEmbed(
+				'Could not get your order status!',
+				`There was an error attempting to retrieve your order status with the order number \`${orderNumber}\`.\n\nPlease ensure that you are entering in the correct order number.\n\nIf there are any further issues, please contact ${config.adminUser}`
+			);
+			await interaction.followUp({
+				embeds: [orderStatusErrorEmbed],
+				ephemeral: true,
+			});
+		}
 	},
 };
