@@ -1,10 +1,10 @@
 import { config } from '../helpers/Discord.js';
-import User from '../models/user.js';
+import UserModel from '../models/user.js';
 
 const createUser = (messageAuthorId, messageAuthorUsername) => {
 	const reward = getRandomReward();
 
-	const newUser = new User({
+	const newUser = new UserModel({
 		_id: messageAuthorId,
 		username: messageAuthorUsername,
 		weekly: Date.now(),
@@ -23,7 +23,7 @@ const createUser = (messageAuthorId, messageAuthorUsername) => {
 };
 
 const findUserById = async (id) => {
-	const user = await User.findById(id);
+	const user = await UserModel.findById(id);
 
 	return user;
 };
@@ -32,7 +32,7 @@ const rewardUser = async (user) => {
 	const reward = getRandomReward();
 	const now = Date.now();
 
-	const updatedUser = await User.findOneAndUpdate(
+	const updatedUser = await UserModel.findOneAndUpdate(
 		{ _id: user._id },
 		{ totalCredits: user.totalCredits + reward, weekly: now },
 		{ new: true }
@@ -72,7 +72,7 @@ const handleCredits = async (user, method, amount) => {
 			newTotal = parseInt(amount);
 		}
 
-		const updatedUser = await User.findOneAndUpdate(
+		const updatedUser = await UserModel.findOneAndUpdate(
 			{ _id: user.id },
 			{ totalCredits: newTotal },
 			{ new: true }

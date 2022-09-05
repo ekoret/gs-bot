@@ -28,6 +28,12 @@ export default class User {
 		return { newUser, reward: totalCredits };
 	}
 
+	static async findUserById(id) {
+		const user = await UserModel.findById(id);
+
+		return user;
+	}
+
 	#getRandomReward() {
 		const rewards = [
 			25, 15, 15, 15, 10, 10, 10, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5,

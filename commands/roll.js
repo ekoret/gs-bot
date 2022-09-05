@@ -1,9 +1,5 @@
 import User from '../controllers/User.js';
-import {
-	findUserById,
-	rewardUser,
-	userCanRoll,
-} from '../controllers/userController.js';
+import { rewardUser, userCanRoll } from '../controllers/userController.js';
 import { SlashCommandBuilder, Embed } from '../helpers/Discord.js';
 
 export default {
@@ -11,7 +7,7 @@ export default {
 		.setName('roll')
 		.setDescription('Get a chance to receive free credits!'),
 	async execute(interaction) {
-		const user = await findUserById(interaction.user.id);
+		const user = await User.findUserById(interaction.user.id);
 
 		if (user === null) {
 			const newUser = new User(interaction.user.id, interaction.user.username);
