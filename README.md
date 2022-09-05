@@ -72,6 +72,7 @@ For example, we would set the flag for the role `@everyone` to false, while role
 
 - What is the difference between using `interaction.isCommand()` vs `interaction.isChatInputCommand()`?
 - Should controllers be classes?
+- When should I use a static method vs an instance method?
 
 [Back To The Top](#gs-bot)
 
