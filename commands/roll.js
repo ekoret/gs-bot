@@ -18,7 +18,7 @@ export default {
 			);
 
 			await interaction.reply({ embeds: [newUserEmbed] });
-		} else if (!userCanRoll(user.weekly)) {
+		} else if (!User.canUserRoll(user.weekly)) {
 			// We need to check if the user is timed-out.
 			const cannotRollEmbed = Embed.getTimedOutEmbed(user);
 

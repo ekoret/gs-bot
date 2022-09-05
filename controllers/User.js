@@ -1,4 +1,5 @@
 import UserModel from '../models/user.js';
+import { config } from '../helpers/Discord.js';
 
 export default class User {
 	constructor(id, username) {
@@ -33,6 +34,16 @@ export default class User {
 
 		return user;
 	}
+
+	static canUserRoll = (userWeekly) => {
+		const now = Date.now();
+
+		if (config.timeout - (now - userWeekly) > 0) {
+			return false;
+		}
+
+		return true;
+	};
 
 	#getRandomReward() {
 		const rewards = [
