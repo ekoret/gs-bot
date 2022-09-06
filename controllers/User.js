@@ -6,7 +6,7 @@ export default class User {
 		this._id = id;
 		this.username = username;
 		this.weekly = Date.now();
-		this.totalCredits = this.#getRandomReward();
+		this.totalCredits = this.getRandomReward();
 
 		this.#createUser(this._id, this.username, this.weekly, this.totalCredits);
 	}
@@ -46,7 +46,7 @@ export default class User {
 	};
 
 	static async rewardUser(user) {
-		const reward = this.#getRandomReward();
+		const reward = this.getRandomReward();
 		const now = Date.now();
 
 		const updatedUser = await UserModel.findOneAndUpdate(
@@ -84,7 +84,7 @@ export default class User {
 		}
 	}
 
-	static #getRandomReward() {
+	getRandomReward() {
 		const rewards = [
 			25, 15, 15, 15, 10, 10, 10, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5,
 		];
