@@ -58,8 +58,8 @@ For example, we would set the flag for the role `@everyone` to false, while role
 - REFACTOR!
 - ~~Change CommonJS requires to imports~~
 - ~~Add useful admin commands~~
-  - Added commands to set and check user data in the database.
-- Add WooCommerce integration
+  - ~~Added commands to set and check user data in the database.~~
+- Add WooCommerce integration\*
 - Add for fun commands for users
   - Add dad jokes?
   - Find some free APIs
@@ -72,6 +72,7 @@ For example, we would set the flag for the role `@everyone` to false, while role
 
 - What is the difference between using `interaction.isCommand()` vs `interaction.isChatInputCommand()`?
 - Should controllers be classes?
+  - To keep everything uniform, controllers have been and will be classes
 - When should I use a static method vs an instance method?
 
 [Back To The Top](#gs-bot)
