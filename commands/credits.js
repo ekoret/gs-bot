@@ -1,4 +1,4 @@
-import { handleCredits } from '../controllers/userController.js';
+import User from '../controllers/User.js';
 import {
 	SlashCommandBuilder,
 	PermissionFlagsBits,
@@ -37,7 +37,7 @@ export default {
 		const user = interaction.options.getUser('user');
 		const method = interaction.options.get('method').value;
 
-		const data = await handleCredits(user, method, amount);
+		const data = await User.handleCredits(user, method, amount);
 
 		if (data !== null) {
 			const methodText = (methodType) => {

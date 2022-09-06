@@ -1,5 +1,4 @@
 import User from '../controllers/User.js';
-import { rewardUser, userCanRoll } from '../controllers/userController.js';
 import { SlashCommandBuilder, Embed } from '../helpers/Discord.js';
 
 export default {
@@ -25,7 +24,7 @@ export default {
 			await interaction.reply({ embeds: [cannotRollEmbed] });
 		} else {
 			// There was a user found, so we can update the user.
-			const { updatedUser, reward } = await rewardUser(user);
+			const { updatedUser, reward } = await User.rewardUser(user);
 
 			const updatedUserRollEmbed = Embed.getUserRolledEmbed(
 				updatedUser,

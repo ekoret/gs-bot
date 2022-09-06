@@ -45,7 +45,46 @@ export default class User {
 		return true;
 	};
 
-	#getRandomReward() {
+	static async rewardUser(user) {
+		const reward = this.#getRandomReward();
+		const now = Date.now();
+
+		const updatedUser = await UserModel.findOneAndUpdate(
+			{ _id: user._id },
+			{ totalCredits: user.totalCredits + reward, weekly: now },
+			{ new: true }
+		);
+
+		return { updatedUser, reward };
+	}
+
+	static async handleCredits(user, method, amount) {
+		const foundUser = await this.findUserById(user.id);
+		if (foundUser !== null) {
+			let newTotal;
+			const previousTotalCredits = foundUser.totalCredits;
+
+			if (method === 'add') {
+				newTotal = parseInt(foundUser.totalCredits) + parseInt(amount);
+			} else if (method === 'minus') {
+				newTotal = parseInt(foundUser.totalCredits) - parseInt(amount);
+			} else if (method === 'set') {
+				newTotal = parseInt(amount);
+			}
+
+			const updatedUser = await UserModel.findOneAndUpdate(
+				{ _id: user.id },
+				{ totalCredits: newTotal },
+				{ new: true }
+			);
+
+			return { updatedUser, previousTotalCredits };
+		} else {
+			return null;
+		}
+	}
+
+	static #getRandomReward() {
 		const rewards = [
 			25, 15, 15, 15, 10, 10, 10, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5,
 		];

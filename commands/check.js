@@ -1,4 +1,4 @@
-import { findUserById } from '../controllers/userController.js';
+import User from '../controllers/User.js';
 import {
 	SlashCommandBuilder,
 	PermissionFlagsBits,
@@ -20,7 +20,7 @@ export default {
 	async execute(interaction) {
 		const userInteraction = interaction.options.getUser('user');
 
-		const user = await findUserById(userInteraction.id);
+		const user = await User.findUserById(userInteraction.id);
 
 		if (user !== null) {
 			const userInfoEmbed = Embed.getUserInfoEmbed(user);
