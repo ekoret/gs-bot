@@ -20,7 +20,7 @@ export default {
 					{ name: 'set', value: 'set' }
 				)
 		)
-		.addStringOption((option) =>
+		.addIntegerOption((option) =>
 			option
 				.setName('amount')
 				.setDescription('The amount of credits to add or minus')
@@ -33,7 +33,7 @@ export default {
 			PermissionFlagsBits.KickMembers | PermissionFlagsBits.BanMembers
 		),
 	async execute(interaction) {
-		const amount = interaction.options.getString('amount');
+		const amount = interaction.options.getInteger('amount');
 		const user = interaction.options.getUser('user');
 		const method = interaction.options.get('method').value;
 
