@@ -58,7 +58,7 @@ export default class User {
 		return { updatedUser, reward };
 	}
 
-	static async handleCredits(user, method, amount) {
+	static async handleCredits({ user, method, amount }) {
 		const foundUser = await this.findUserById(user.id);
 		if (foundUser !== null) {
 			let newTotal;

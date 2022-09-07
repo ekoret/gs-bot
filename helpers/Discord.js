@@ -99,4 +99,14 @@ export default class Discord {
 			return false;
 		}
 	}
+
+	static getMethodText(methodType) {
+		if (methodType === 'set') {
+			return ['set', 'for'];
+		} else if (methodType === 'add') {
+			return ['added', 'to'];
+		} else if (methodType === 'minus') {
+			return ['subtracted', 'from'];
+		}
+	}
 }
