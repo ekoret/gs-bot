@@ -3,18 +3,31 @@ const WooCommerceRestApi = pkg.default;
 import { wcConfig } from './Discord.js';
 
 export default class WooCommerce {
-	static async getOrderStatus(orderNumber) {
+	static async getOrderStatus({ email, orderNumber }) {
 		const api = new WooCommerceRestApi(wcConfig);
 
 		const data = await api
 			.get(`orders/${orderNumber}`)
 			.then((response) => {
 				if (response.status === 200) {
+					// We got data
 					const responseData = response.data;
 
-					const { id, status, date_created, date_modified } = responseData;
+					const { id, status, date_created, date_modified, billing } =
+						responseData;
+
+					const userEmail = billing.email.toLowerCase();
+					const inputEmail = email.toLowerCase();
+
+					// Here we are checking if the input email matches the email in the database
+					if (userEmail !== inputEmail) {
+						return null;
+					}
 
 					return { id, status, date_created, date_modified };
+				} else {
+					// Any other response status other than 200 will return null
+					return null;
 				}
 			})
 			.catch((error) => {
