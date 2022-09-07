@@ -26,16 +26,16 @@ export default class WooCommerce {
 					console.log({
 						message: 'Invalid Order ID',
 						status: error.response.status,
-						headers: error.response.headers,
 						data: error.response.data,
+						orderNumber: orderNumber,
 					});
 				} else {
 					// Hanlding authentication, authorization, and network errors
 					console.log({
 						message: '4xx and 5xx error',
 						status: error.response.status,
-						headers: error.response.headers,
 						data: error.response.data,
+						orderNumber: orderNumber,
 					});
 				}
 
