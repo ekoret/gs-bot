@@ -1,6 +1,6 @@
 # gs-bot
 
-> Version 0.1.6 has all of the useful admin commands as well as commands for users. The project has been converted from CommonJS requires to ES6 import and exports. The reason for changing was to handle modules in a more modern way. This version will now focus on styling embeds, wording, typos, and any refactoring that needs to be done.
+> Version 0.1.6a will focus on refactoring the Embed class.
 
 ### Table of Contents
 
