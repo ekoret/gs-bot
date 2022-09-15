@@ -12,8 +12,9 @@ export default class WooCommerce {
 				if (response.status === 200) {
 					// We got data
 					const responseData = response.data;
+					console.log(responseData);
 
-					const { id, status, date_created, date_modified, billing } =
+					const { id, status, date_created, date_modified, billing, total } =
 						responseData;
 
 					const userEmail = billing.email.toLowerCase();
@@ -24,7 +25,13 @@ export default class WooCommerce {
 						return null;
 					}
 
-					return { id, status, date_created, date_modified };
+					return {
+						id,
+						status,
+						date_created,
+						date_modified,
+						total: `$${total}`,
+					};
 				} else {
 					// Any other response status other than 200 will return null
 					return null;

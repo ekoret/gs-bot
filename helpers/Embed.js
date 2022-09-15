@@ -127,7 +127,13 @@ export default class Embed {
 		return embed;
 	}
 
-	static getOrderDetailsEmbed({ id, status, date_created, date_modified }) {
+	static getOrderDetailsEmbed({
+		id,
+		status,
+		date_created,
+		date_modified,
+		total,
+	}) {
 		const embed = new EmbedBuilder()
 			.setColor('#046738')
 			.setTitle(`Order status for order ${id}`)
@@ -139,6 +145,10 @@ export default class Embed {
 				{
 					name: 'Status',
 					value: `\`${status}\``,
+				},
+				{
+					name: 'Total',
+					value: `\`${total}\``,
 				},
 				{
 					name: 'Date Created',
