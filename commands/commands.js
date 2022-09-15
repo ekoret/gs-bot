@@ -7,11 +7,11 @@ export default {
 	async execute(interaction) {
 		const commandText = await Discord.getTableText('commands');
 
-		const embed = new Embed().createEmbed('List of Commands', ' ');
-
-		embed.setDescription(
+		const embed = new Embed(
+			'List of Commands',
 			`View the list of available commands\n\n${commandText}`
-		);
+		).getEmbed();
+
 		await interaction.reply({ embeds: [embed] });
 	},
 };

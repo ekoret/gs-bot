@@ -26,10 +26,10 @@ export default {
 			const userInfoEmbed = Embed.getUserInfoEmbed(user);
 			interaction.reply({ embeds: [userInfoEmbed] });
 		} else {
-			const errorEmbed = new Embed().createEmbed(
-				'Could Not find User',
+			const errorEmbed = new Embed(
+				'Could Not Find User',
 				`Could not find any data for the user ${userInteraction.username}`
-			);
+			).getEmbed();
 
 			interaction.reply({ embeds: [errorEmbed] });
 		}

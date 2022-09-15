@@ -32,10 +32,10 @@ export default {
 
 		// Base cases
 		if (input.orderNumber.toString().length !== 7) {
-			const failedOrderLengthEmbed = new Embed().createEmbed(
+			const failedOrderLengthEmbed = new Embed(
 				'Incorrect order length!',
 				'The length of your order number was incorrect! It must be 7 numbers.'
-			);
+			).getEmbed();
 
 			await interaction.reply({
 				embeds: [failedOrderLengthEmbed],
@@ -43,10 +43,10 @@ export default {
 			});
 			return;
 		} else if (!Discord.checkEmailInString(input.email)) {
-			const failedEmailEmbed = new Embed().createEmbed(
+			const failedEmailEmbed = new Embed(
 				'Incorrect email format!',
 				'The email entered was not in the correct email format. Please check your email again.'
-			);
+			).getEmbed();
 
 			await interaction.reply({
 				embeds: [failedEmailEmbed],
@@ -71,10 +71,10 @@ export default {
 				ephemeral: true,
 			});
 		} else {
-			const orderStatusErrorEmbed = new Embed().createEmbed(
+			const orderStatusErrorEmbed = new Embed(
 				'Could not get your order status!',
 				`There was an error attempting to retrieve your order status with the order number \`${input.orderNumber}\` and email \`${input.email}\`.\n\n\`Please ensure that you are entering in the correct order number and email that you used to make the order on ${config.companyName}.\`\n\nIf there are any further issues, please contact \`${config.adminUser}\` or \`${config.customerSupportUser}\``
-			);
+			).getEmbed();
 
 			await interaction.followUp({
 				embeds: [orderStatusErrorEmbed],

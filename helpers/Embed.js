@@ -1,16 +1,18 @@
 import { config, EmbedBuilder } from './Discord.js';
 
 export default class Embed {
-	constructor() {
+	constructor(title, description) {
 		this.color = '#046738';
+		this.title = title;
+		this.description = description;
 		this.footer = `${config.companyName} | Any issues with the bot please contact ${config.adminUser}`;
 	}
 
-	createEmbed(title, description) {
+	getEmbed() {
 		const embed = new EmbedBuilder()
 			.setColor(this.color)
-			.setTitle(title)
-			.setDescription(description)
+			.setTitle(this.title)
+			.setDescription(this.description)
 			.setTimestamp()
 			.setFooter({
 				text: this.footer,

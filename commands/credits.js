@@ -44,19 +44,19 @@ export default {
 		if (data !== null) {
 			const [action, text] = Discord.getMethodText(input.method);
 			const { updatedUser, previousTotalCredits } = data;
-			const embedText = `You've successfully \`${action} ${input.amount} credits\` ${text} \`${updatedUser.username}\`.\n\n\`${updatedUser.username}\` went from \`${previousTotalCredits}\` to \`${updatedUser.totalCredits}.\``;
 
-			const embed = new Embed().createEmbed('Credits Manager', embedText);
+			const embedText = `You've successfully \`${action} ${input.amount} credits\` ${text} \`${updatedUser.username}\`.\n\n\`${updatedUser.username}\` went from \`${previousTotalCredits}\` to \`${updatedUser.totalCredits}.\``;
+			const embed = new Embed('Credits Manager', embedText).getEmbed();
 
 			await interaction.reply({
 				embeds: [embed],
 				ephemeral: true,
 			});
 		} else {
-			const embed = new Embed().createEmbed(
+			const embed = new Embed(
 				'Credits Manager',
 				`Could not find user ${input.user.username} in database. Nothing was updated.`
-			);
+			).getEmbed();
 
 			await interaction.reply({
 				embeds: [embed],

@@ -11,11 +11,8 @@ export default {
 	async execute(interaction) {
 		const commandText = await Discord.getTableText('rewards');
 
-		const embed = new Embed().createEmbed('Rewards', ' ');
-
 		const descriptionText = `\`There is a minimum redemption amount of $25 CREDITS\`\n\n${commandText}\n\nContact \`${config.customerSupportUser}\` with the amount you'd like to redeem along with the email address associated with your ${config.companyName} account.`;
-
-		embed.setDescription(descriptionText);
+		const embed = new Embed('Rewards', descriptionText).getEmbed();
 
 		await interaction.reply({ embeds: [embed] });
 	},
