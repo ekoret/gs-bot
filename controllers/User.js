@@ -84,7 +84,7 @@ export default class User {
 		}
 	}
 
-	getRandomReward() {
+	static getRandomReward() {
 		const rewards = [
 			25, 15, 15, 15, 10, 10, 10, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5,
 		];
