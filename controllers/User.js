@@ -6,7 +6,7 @@ export default class User {
 		this._id = id;
 		this.username = username;
 		this.weekly = Date.now();
-		this.totalCredits = this.getRandomReward();
+		this.totalCredits = this.constructor.getRandomReward();
 
 		this.#createUser(this._id, this.username, this.weekly, this.totalCredits);
 	}
